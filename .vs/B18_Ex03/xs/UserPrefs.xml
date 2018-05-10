@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{FE0E3279-701E-4DE7-A3CA-FA46DBCCBAA8}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="B18_Ex03/Wheel.cs">
+    <Files>
+      <File FileName="B18_Ex03/Wheel.cs" Line="1" Column="1" />
+      <File FileName="B18_Ex03/Vehicle.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.B18__Ex03 PreferredExecutionTarget="MonoDevelop.Default" FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
