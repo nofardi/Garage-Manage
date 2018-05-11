@@ -1,7 +1,7 @@
 ﻿using System;
-namespace B18_Ex03
+namespace B18_Ex03.GarageLogic
 {
-    public class Truck : Vehicle
+    public class Truck :Vehicle
     {
         bool m_IsTrunckCooled;
         float m_TrunckCapacity;

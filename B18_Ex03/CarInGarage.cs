@@ -1,4 +1,4 @@
-﻿namespace B18_Ex03
+﻿namespace B18_Ex03.GarageLogic
 {
     public class CarInGarage
     {
