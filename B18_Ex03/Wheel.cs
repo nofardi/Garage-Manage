@@ -14,6 +14,7 @@ namespace B18_Ex03
             m_MaxAirPressure = i_MaxAirPressure;
         }
 
+        //TODO: throw out of range excaption
         public void addAirToWheel(float i_AirToAdd)
         {
             if(m_CurrAirpressure + i_AirToAdd > m_MaxAirPressure)
