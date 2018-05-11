@@ -12,6 +12,7 @@ namespace B18_Ex03
             m_MaxBatteryHours = i_MaxBatteryHours;
         }
 
+        //TODO: throw out of range excaption
         public void PowerBattery(float i_HoursToAdd)
         {
             if(m_BatteryHoursLeft + i_HoursToAdd > m_MaxBatteryHours)

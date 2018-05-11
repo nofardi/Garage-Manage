@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 namespace B18_Ex03
 {
-    public class Vehicle
+    public abstract class Vehicle
     {
         string m_ModelName;
         string m_LicensingNumber;
