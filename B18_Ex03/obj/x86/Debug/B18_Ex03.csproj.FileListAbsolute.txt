@@ -1,1 +1,0 @@
-/Users/ndiamant/Projects/B18_Ex03/B18_Ex03/obj/x86/Debug/B18_Ex03.csproj.CoreCompileInputs.cache
