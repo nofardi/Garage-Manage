@@ -1,5 +1,5 @@
 ﻿using System;
-namespace B18_Ex03.GarageLogic
+namespace Ex03.GarageLogic
 {
     public abstract class GasVehicle
     {

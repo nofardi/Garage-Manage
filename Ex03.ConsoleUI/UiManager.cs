@@ -10,6 +10,7 @@ namespace Ex03.ConsoleUI
     public class UiManager
     {
         private bool clearScreen;
+        GarageManager m_GarageManager = new GarageManager();
 
         public void Run()
         {
@@ -106,13 +107,21 @@ namespace Ex03.ConsoleUI
 
         private void enterNewVehicle()
         {
-            throw new NotImplementedException();
+            try
+            {
+                //GarageManager.CreatingVehicle(i_VehicleType, i_LicenseNumber);
+                
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Input Please start over!");
+            }
         }
 
         private void printUserMenu()
         {
             Console.Write(
-                @"Welcome to our garage!
+                @"Welcome to Nofar&Erez garage!
 ----------------------
 Please choose one of the following options:
 
