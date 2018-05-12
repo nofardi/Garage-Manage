@@ -1,27 +1,11 @@
-﻿<Properties StartupConfiguration="{FE0E3279-701E-4DE7-A3CA-FA46DBCCBAA8}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="B18_Ex03/Wheel.cs">
-    <Files>
-      <File FileName="B18_Ex03/Vehicle.cs" Line="1" Column="34" />
-      <File FileName="B18_Ex03/GasVehicle.cs" Line="14" Column="43" />
-      <File FileName="B18_Ex03/RegMotor.cs" Line="6" Column="12" />
-      <File FileName="B18_Ex03/Motor.cs" Line="4" Column="20" />
-      <File FileName="B18_Ex03/eLicenseType.cs" Line="6" Column="22" />
-      <File FileName="B18_Ex03/eCarColors.cs" Line="6" Column="15" />
-      <File FileName="B18_Ex03/eCarDoors.cs" Line="9" Column="16" />
-      <File FileName="B18_Ex03/Car.cs" Line="4" Column="40" />
-      <File FileName="B18_Ex03/Truck.cs" Line="9" Column="68" />
-      <File FileName="B18_Ex03/eGasType.cs" Line="6" Column="41" />
-      <File FileName="B18_Ex03/ElectricVehicle.cs" Line="13" Column="10" />
-      <File FileName="B18_Ex03/CarInGarage.cs" Line="10" Column="16" />
-      <File FileName="B18_Ex03/eCarRepairStatus.cs" Line="4" Column="27" />
-      <File FileName="B18_Ex03/Wheel.cs" Line="17" Column="17" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+﻿<Properties StartupConfiguration="{019971F6-D02D-4AFE-BD6B-A19033386EF3}|Default">
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.B18__Ex03 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Ex03.ConsoleUI PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>
