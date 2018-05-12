@@ -14,12 +14,15 @@ namespace Ex03.GarageLogic
             m_MaxAirPressure = i_MaxAirPressure;
         }
 
-        //TODO: throw out of range excaption
+        public string ManufacturerName => m_ManufacturerName;
+        public float CurrAirpressure => m_CurrAirpressure;
+        public float MaxAirPressure => m_MaxAirPressure;
+
         public void addAirToWheel(float i_AirToAdd)
         {
-            if(m_CurrAirpressure + i_AirToAdd > m_MaxAirPressure)
+            if (m_CurrAirpressure + i_AirToAdd > m_MaxAirPressure)
             {
-                m_CurrAirpressure = m_MaxAirPressure;
+                throw new ValueOutOfRangeException(0, m_MaxAirPressure - m_CurrAirpressure);
             }
             else
             {
