@@ -1,8 +1,14 @@
 ﻿using System.Text;
 namespace Ex03.GarageLogic
 {
-    public abstract class Car : Vehicle
+    public class Car : Vehicle
     {
+        internal const int k_NumOfWheels = 4;
+        internal const float k_MaxAirPressue = 32f;
+        internal const eGasType k_GasType = eGasType.Octan98;
+        internal const float k_MaxLiterGas = 45f;
+        internal const float k_MaxBatteryTime = 3.2f;  
+
         eCarColors m_CarColor;
         eCarDoors m_AmountOfDoors;
         public Car(eCarColors i_CarsColor, eCarDoors i_AmountOfDoors, string i_ModelName, string i_LicensingNumber, float i_LeftEnergy, Wheel[] i_Wheels, Engine i_Engine,

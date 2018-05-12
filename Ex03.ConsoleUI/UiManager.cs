@@ -138,5 +138,10 @@ Please choose one of the following options:
 Your choice: ");
         }
 
+        private Dictionary<eVehicleInfoParams, string> getVehicleInfoFromUser()
+        {
+            return null;
+        }
+
     }
 }
