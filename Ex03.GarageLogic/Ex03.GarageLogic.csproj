@@ -35,17 +35,18 @@
     <Compile Include="ValueOutOfRangeExepction.cs" />
     <Compile Include="Wheel.cs" />
     <Compile Include="Vehicle.cs" />
-    <Compile Include="GasVehicle.cs" />
+    <Compile Include="GasEngine.cs" />
     <Compile Include="Motor.cs" />
     <Compile Include="eLicenseType.cs" />
     <Compile Include="eCarColors.cs" />
     <Compile Include="eCarDoors.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="Truck.cs" />
-    <Compile Include="ElectricVehicle.cs" />
+    <Compile Include="ElectricEngine.cs" />
     <Compile Include="eGasType.cs" />
     <Compile Include="CarInGarage.cs" />
     <Compile Include="eCarRepairStatus.cs" />
+    <Compile Include="Engine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

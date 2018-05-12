@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\B18_Ex03\Ex03.GarageLogic.csproj">
       <Project>{fe0e3279-701e-4de7-a3ca-fa46dbccbaa8}</Project>
       <Name>Ex03.GarageLogic</Name>
@@ -42,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="eUserChoice.cs" />
-    <Compile Include="Progrem.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="UiManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

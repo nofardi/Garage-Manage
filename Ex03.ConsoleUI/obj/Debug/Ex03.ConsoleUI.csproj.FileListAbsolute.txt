@@ -1,0 +1,1 @@
+/Users/ndiamant/Projects/B18_Ex03/Ex03.ConsoleUI/obj/Debug/Ex03.ConsoleUI.csproj.CoreCompileInputs.cache

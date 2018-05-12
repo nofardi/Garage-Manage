@@ -121,7 +121,7 @@ namespace Ex03.ConsoleUI
         private void printUserMenu()
         {
             Console.Write(
-                @"Welcome to Nofar&Erez garage!
+                @"Welcome to Nofar & Erez garage!
 ----------------------
 Please choose one of the following options:
 

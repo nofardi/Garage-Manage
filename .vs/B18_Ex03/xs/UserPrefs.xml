@@ -1,5 +1,17 @@
 ﻿<Properties StartupConfiguration="{019971F6-D02D-4AFE-BD6B-A19033386EF3}|Default">
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Ex03.GarageLogic/GarageManager.cs">
+    <Files>
+      <File FileName="Ex03.GarageLogic/CarInGarage.cs" Line="1" Column="1" />
+      <File FileName="Ex03.ConsoleUI/UiManager.cs" Line="124" Column="38" />
+      <File FileName="Ex03.GarageLogic/ValueOutOfRangeExepction.cs" Line="1" Column="1" />
+      <File FileName="Ex03.GarageLogic/Truck.cs" Line="1" Column="1" />
+      <File FileName="Ex03.ConsoleUI/Program.cs" Line="15" Column="13" />
+      <File FileName="Ex03.GarageLogic/Engine.cs" Line="31" Column="2" />
+      <File FileName="Ex03.GarageLogic/GasEngine.cs" Line="17" Column="4" />
+      <File FileName="Ex03.GarageLogic/ElectricEngine.cs" Line="13" Column="4" />
+      <File FileName="Ex03.GarageLogic/GarageManager.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
