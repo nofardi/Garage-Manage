@@ -9,6 +9,10 @@ namespace Ex03.GarageLogic
         energyPercentageLeft,
         wheelManufactureName,
         wheelCurrentAirPressure,
-        licenseType
+        licenseType,
+        carColor,
+        carDoors,
+        trunkCapacity,
+        isTrunkCooled
     }
 }

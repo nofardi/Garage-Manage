@@ -3,6 +3,11 @@ namespace Ex03.GarageLogic
 {
     public class Truck : Vehicle
     {
+        internal const int k_NumOfWheels = 12;
+        internal const float k_MaxAirPressue = 28f;
+        internal const eGasType k_GasType = eGasType.Soler;
+        internal const float k_MaxLiterGas = 115f;
+
         bool m_IsTrunkCooled;
         float m_TrunkCapacity;
 
