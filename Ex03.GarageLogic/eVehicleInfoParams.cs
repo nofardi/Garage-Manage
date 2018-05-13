@@ -3,6 +3,7 @@ namespace Ex03.GarageLogic
 {
     public enum eVehicleInfoParams
     {
+        vehicleType,
         modelName,
         licenseNumber,
         engineVolume,
