@@ -44,8 +44,14 @@ namespace Ex03.GarageLogic
 
         public static eVehicleType GetVehicleTypeFromStr(string i_VehicleTypeString)
         {
-            //TODO
-            return eVehicleType.Car;
+            eVehicleType vehicleType;
+            if (!Enum.TryParse(i_VehicleTypeString, out vehicleType)
+                || !Enum.IsDefined(typeof(eVehicleType), vehicleType))
+            {
+                throw new ArgumentException(GarageManager.k_InvalidEnumExceptionString);
+            }
+
+            return vehicleType;
         }
 
         private static Vehicle createMotor(Engine i_Engine, Dictionary<eVehicleInfoParams ,string> i_VehicleParameters)
@@ -133,7 +139,7 @@ namespace Ex03.GarageLogic
             return new ElectricEngine(i_MaxBatteryHours, i_MaxBatteryHours);
         }
 
-        public static void getVehicleParameters(Dictionary<eVehicleInfoParams, string> i_VehicleParametersStrings, out string o_ModelName, out string o_LicenseNumber,
+        private static void getVehicleParameters(Dictionary<eVehicleInfoParams, string> i_VehicleParametersStrings, out string o_ModelName, out string o_LicenseNumber,
                                                 out float o_EnergyPercentageLeft, out string o_WheelManufactureName, out float o_WheelCurrentAirPressure)
         {
             o_ModelName = i_VehicleParametersStrings[eVehicleInfoParams.modelName];
