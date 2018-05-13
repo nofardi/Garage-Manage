@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
@@ -43,7 +40,7 @@ namespace Ex03.ConsoleUI
                         enterNewVehicle();
                         break;
                     case eUserChoice.ShowLicenseNumbers:
-                        showVehiclesInGarageByLicensesNumber();
+                        printGarageVehiclesLicense();
                         break;
                     case eUserChoice.ChangeVehicleStatus:
                         changeVehicleStatus();
@@ -100,9 +97,69 @@ namespace Ex03.ConsoleUI
             throw new NotImplementedException();
         }
 
-        private void showVehiclesInGarageByLicensesNumber()
+        private void printGarageVehiclesLicense()
         {
-            throw new NotImplementedException();
+            int i = 1;
+            Console.WriteLine("please decide which status of vehicle you want to see:");
+            foreach (var value in Enum.GetValues(typeof(eVehicleRepairStatus)))
+            {
+                Console.WriteLine("{0}. {1}", i, value);
+                i++;
+            }
+            Console.WriteLine("{0} All", i);
+            string input = Console.ReadLine();
+            if (Int32.TryParse(input, out i))
+            {
+                if (i == 4)
+                {
+                    printAll();
+                }
+                else
+                {
+                    eVehicleRepairStatus status;
+                    if (Enum.TryParse(input, out status))
+                    {
+                        printByStatus(status);
+                    }
+                    else
+                    {
+                        Console.WriteLine("invalid decision, please try again");
+                        printGarageVehiclesLicense();
+                    }
+                }
+            }
+        }
+        private void printByStatus(eVehicleRepairStatus i_Status)
+        {
+            string[] vehiclesToPrint = m_GarageManager.ReturnAllGarageVehicles();
+
+            if (vehiclesToPrint == null)
+            {
+                Console.WriteLine("There are no vehicles of this status in the garage");
+            }
+            else
+            {
+                foreach (string var in vehiclesToPrint)
+                {
+                    Console.WriteLine(var);
+                }              
+            }
+        }
+
+        private void printAll()
+        {
+            string[] vehicleKeys = m_GarageManager.ReturnAllGarageVehicles();
+            if (vehicleKeys == null)
+            {
+                Console.WriteLine("There are no vehicles in the garage");             
+            }
+            else
+            {
+                foreach (string var in vehicleKeys)
+                {
+                    Console.WriteLine(var);
+                }             
+            }
         }
 
         private void enterNewVehicle()

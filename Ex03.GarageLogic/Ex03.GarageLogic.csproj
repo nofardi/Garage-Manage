@@ -30,9 +30,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CreatingNewVahicle.cs" />
+    <Compile Include="eVehicleInfoParams.cs" />
+    <Compile Include="eVehicleRepairStatus.cs" />
     <Compile Include="GarageManager.cs" />
     <Compile Include="ValueOutOfRangeExepction.cs" />
+    <Compile Include="VehicleFactory.cs" />
     <Compile Include="Wheel.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="GasEngine.cs" />
@@ -45,7 +47,6 @@
     <Compile Include="ElectricEngine.cs" />
     <Compile Include="eGasType.cs" />
     <Compile Include="CarInGarage.cs" />
-    <Compile Include="eCarRepairStatus.cs" />
     <Compile Include="Engine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

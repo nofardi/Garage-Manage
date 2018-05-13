@@ -17,5 +17,19 @@ namespace Ex03.GarageLogic
             get => m_CurrentVehiclesInGarage;
             set => m_CurrentVehiclesInGarage = value;
         }
+
+        public string[] ReturnAllGarageVehicles()
+        {
+            string[] vehicles = null;
+
+            if (CurrentVehiclesInGarage.Count != 0)
+            {
+                vehicles = CurrentVehiclesInGarage.Keys.ToArray();
+            }
+
+            return vehicles;
+        }
     }
+
+    
 }
