@@ -10,10 +10,9 @@ namespace Ex03.GarageLogic
     {
         public const string k_InvalidEnumExceptionString = "The input you've entered isn't one of the valid options";
 
-        private Dictionary<string, Vehicle> m_CurrentVehiclesInGarage;
-        private List<Client> m_CurrentClientsInGarage;
+        private Dictionary<string, VehicleInGarage> m_CurrentVehiclesInGarage;
 
-        public Dictionary<string, Vehicle> CurrentVehiclesInGarage
+        public Dictionary<string, VehicleInGarage> CurrentVehiclesInGarage
         {
             get => m_CurrentVehiclesInGarage;
             set => m_CurrentVehiclesInGarage = value;
@@ -32,17 +31,20 @@ namespace Ex03.GarageLogic
         }
         public GarageManager()
         {
-            m_CurrentVehiclesInGarage = new Dictionary<string, Vehicle>();
-            m_CurrentClientsInGarage = new List<Client>();
+            m_CurrentVehiclesInGarage = new Dictionary<string, VehicleInGarage>();
         }
 
         public void AddVehicle(string i_OwnerName, string i_OwnerPhoneNumber, Dictionary<eVehicleInfoParams ,string> i_VehicleParametersList)
         {
             Vehicle vehicle = VehicleFactory.CreateVehicle(i_VehicleParametersList[eVehicleInfoParams.vehicleType], i_VehicleParametersList);
-            Client client = new Client(i_OwnerName, i_OwnerPhoneNumber, eVehicleRepairStatus.IN_PROGRESS, vehicle);
-            m_CurrentVehiclesInGarage.Add(vehicle.LicensingNum, vehicle);
-            m_CurrentClientsInGarage.Add(client);
+            VehicleInGarage vehicleInGarage = new VehicleInGarage(i_OwnerName, i_OwnerPhoneNumber, eVehicleRepairStatus.IN_PROGRESS, vehicle);
+            m_CurrentVehiclesInGarage.Add(vehicle.LicensingNum, vehicleInGarage);
 
+        }
+
+        public bool IsVehicleInGarage(string i_LicenseNum)
+        {
+            return m_CurrentVehiclesInGarage.ContainsKey(i_LicenseNum);
         }
     }
 

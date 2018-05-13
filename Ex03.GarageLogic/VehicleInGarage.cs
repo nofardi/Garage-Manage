@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 namespace Ex03.GarageLogic
 {
-    public class Client
+    public class VehicleInGarage
     {
         private string m_OwnerName;
         private string m_OwnerPhoneNumber;
         private eVehicleRepairStatus m_VehicleRepairStatus;
-        private List<Vehicle> m_Vehicles;
+        private Vehicle m_Vehicle;
 
         public string OwnerName
         {
@@ -26,19 +26,18 @@ namespace Ex03.GarageLogic
             set => m_VehicleRepairStatus = value;
         }
 
-        public List<Vehicle> Vehicle
+        public Vehicle Vehicle
         {
-            get => m_Vehicles;
-            set => m_Vehicles = value;
+            get => m_Vehicle;
+            set => m_Vehicle = value;
         }
 
-        public Client(string i_OwnerName, string i_OwnerPhoneNumber, eVehicleRepairStatus i_VehicleStatus, Vehicle i_Vehicle)
+        public VehicleInGarage(string i_OwnerName, string i_OwnerPhoneNumber, eVehicleRepairStatus i_VehicleStatus, Vehicle i_Vehicle)
         {
             OwnerName = i_OwnerName;
             OwnerPhoneNumber = i_OwnerPhoneNumber;
             m_VehicleRepairStatus = i_VehicleStatus;
-            m_Vehicles = new List<Vehicle>();
-            m_Vehicles.Add(i_Vehicle);
+            m_Vehicle = i_Vehicle;
         }
 
         public override string ToString()
@@ -46,7 +45,7 @@ namespace Ex03.GarageLogic
                 return $@"Owner's name: {m_OwnerName}
 Owner's phone number: {m_OwnerPhoneNumber}
 Vehicle status: {m_VehicleRepairStatus}
-Vehicle type: 
+Vehicle type: {m_Vehicle}
  
 ";
         }

@@ -25,6 +25,7 @@ namespace Ex03.ConsoleUI
                     Console.WriteLine(valueOutOfRangeException.Message);
                     Console.WriteLine("Try again:");
                 }
+
             }
         }
 
@@ -164,10 +165,20 @@ namespace Ex03.ConsoleUI
 
         private void enterNewVehicle()
         {
+            //TODO: change the try catch here
             try
             {
-                //GarageManager.CreatingVehicle(i_VehicleType, i_LicenseNumber);
-                
+                string vehicleLicenseNumber = getParameterDetailFromUser("Please enter yout vehicle's license", ParameterValidator.eValidityTypes.All);
+                if (!m_GarageManager.IsVehicleInGarage(vehicleLicenseNumber))
+                {
+                    this.addClientsVehicleToGarage(vehicleLicenseNumber);
+                    Console.WriteLine("Client's vehicle was added successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Vehicle is already in the garage.");
+                    m_GarageManager.CurrentVehiclesInGarage[vehicleLicenseNumber].VehicleRepairStatus = eVehicleRepairStatus.IN_PROGRESS;
+                }
             }
             catch
             {
@@ -195,9 +206,69 @@ Please choose one of the following options:
 Your choice: ");
         }
 
-        private Dictionary<eVehicleInfoParams, string> getVehicleInfoFromUser()
+        private string getParameterDetailFromUser(string i_DetailToAskString, ParameterValidator.eValidityTypes i_ValidiatyToCheck)
         {
-            return null;
+            string inputDetails;
+            Console.WriteLine(i_DetailToAskString);
+
+            inputDetails = Console.ReadLine();
+            ParameterValidator.CheckInputParameterValid(inputDetails, i_ValidiatyToCheck);
+            return inputDetails;
+        }
+
+        //private string getRangeParametersDetails(string i_DetailToAskString, int i_MinValue, int i_MaxValue)
+        //{
+            
+        //}
+
+        private void addClientsVehicleToGarage(string i_LicenseNumber)
+        {
+            Dictionary<eVehicleInfoParams, string> vehicleParams;
+            string ownerName = getParameterDetailFromUser("Owner's name", ParameterValidator.eValidityTypes.LettersOnly);
+            string ownerPhoneNumber = getParameterDetailFromUser("Owner's phone", ParameterValidator.eValidityTypes.NumberOnly);
+
+            vehicleParams = getVehicleInfoFromUser(i_LicenseNumber);
+            m_GarageManager.AddVehicle(ownerName, ownerPhoneNumber, vehicleParams);
+        }
+
+        private Dictionary<eVehicleInfoParams, string> getVehicleInfoFromUser(string i_LicenseNumber)
+        {
+            VehicleFactory.eVehicleType vehicleType = this.getVehicleTypeFromUser();
+            Dictionary<eVehicleInfoParams, string> vehicleParameters = new Dictionary<eVehicleInfoParams, string>
+            {
+                {eVehicleInfoParams.vehicleType, vehicleType.ToString()},
+                {eVehicleInfoParams.modelName, getParameterDetailFromUser(@"Please insert the vehicle's model name.", ParameterValidator.eValidityTypes.All)},
+                {eVehicleInfoParams.licenseNumber, i_LicenseNumber},
+                //{eVehicleInfoParams.energyPercentageLeft, getRangeParametersDetails(@"Please insert how much energy \ fuel left (0 to 100%) in the vehicle.", k_MinValue, Utilities.k_MaxPercentage)},
+                {eVehicleInfoParams.wheelManufactureName, getParameterDetailFromUser("Please type the wheels' manufacture name.", ParameterValidator.eValidityTypes.All)}
+                //{eVehicleInfoParams.wheelCurrentAirPressure, getRangeParametersDetails("Please enter the vehicle's current tire's air pressure.",k_MinValue, Vehicle.GetMaxAirPressure(vehicleType))}
+            };
+           // List<ParameterValidator> extraParameterInfo = VehicleFactory.BuildExtraParametersInfo(vehicleType);
+
+          //  getExtraVehicleParameters(vehicleParameters, extraParameterInfo);
+
+            return vehicleParameters;
+        }
+
+        private VehicleFactory.eVehicleType getVehicleTypeFromUser()
+        {
+            Console.WriteLine("Please choose vehicle type.");
+            printEnumList(new VehicleFactory.eVehicleType());
+            string vehicleTypeString = Console.ReadLine();
+            VehicleFactory.eVehicleType vehicleType = VehicleFactory.GetVehicleTypeFromStr(vehicleTypeString);
+            return vehicleType;
+        }
+
+        private static void printEnumList(Enum i_EnumType)
+        {
+            string[] enumNamesArray = Enum.GetNames(i_EnumType.GetType());
+            byte enumIndex = 1;
+
+            foreach (string name in enumNamesArray)
+            {
+                Console.WriteLine($"{enumIndex}. {name}");
+                enumIndex++;
+            }
         }
 
     }
