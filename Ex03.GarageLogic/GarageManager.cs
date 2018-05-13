@@ -19,7 +19,6 @@ namespace Ex03.GarageLogic
             set => m_CurrentVehiclesInGarage = value;
         }
 
-<<<<<<< Updated upstream
         public string[] ReturnAllGarageVehicles()
         {
             string[] vehicles = null;
@@ -30,7 +29,7 @@ namespace Ex03.GarageLogic
             }
 
             return vehicles;
-=======
+        }
         public GarageManager()
         {
             m_CurrentVehiclesInGarage = new Dictionary<string, Vehicle>();
@@ -43,7 +42,7 @@ namespace Ex03.GarageLogic
             Client client = new Client(i_OwnerName, i_OwnerPhoneNumber, eVehicleRepairStatus.IN_PROGRESS, vehicle);
             m_CurrentVehiclesInGarage.Add(vehicle.LicensingNum, vehicle);
             m_CurrentClientsInGarage.Add(client);
->>>>>>> Stashed changes
+
         }
     }
 
