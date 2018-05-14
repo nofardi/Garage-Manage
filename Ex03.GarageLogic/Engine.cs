@@ -12,6 +12,7 @@
         }
 
         public float MaxEnergyAmount => r_MaxEnergyAmount;
+
         public float CurrentEnergyAmount { get => m_CurrentEnergyAmount; set => m_CurrentEnergyAmount = value; }
 
         protected void AddEnergyAmount(float i_EnergySourceToAdd)

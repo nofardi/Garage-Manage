@@ -29,17 +29,17 @@ namespace Ex03.GarageLogic
 
             return vehicles;
         }
+
         public GarageManager()
         {
             m_CurrentVehiclesInGarage = new Dictionary<string, VehicleInGarage>();
         }
 
-        public void AddVehicle(string i_OwnerName, string i_OwnerPhoneNumber, Dictionary<eVehicleInfoParams ,string> i_VehicleParametersList)
+        public void AddVehicle(string i_OwnerName, string i_OwnerPhoneNumber, Dictionary<eVehicleInfoParams,string>i_VehicleParametersList)
         {
             Vehicle vehicle = VehicleFactory.CreateVehicle(i_VehicleParametersList[eVehicleInfoParams.vehicleType], i_VehicleParametersList);
             VehicleInGarage vehicleInGarage = new VehicleInGarage(i_OwnerName, i_OwnerPhoneNumber, eVehicleRepairStatus.IN_PROGRESS, vehicle);
             m_CurrentVehiclesInGarage.Add(vehicle.LicensingNum, vehicleInGarage);
-
         }
 
         public bool IsVehicleInGarage(string i_LicenseNum)
@@ -51,6 +51,7 @@ namespace Ex03.GarageLogic
         {
             m_CurrentVehiclesInGarage[i_clientlicenseNumber].VehicleRepairStatus = i_newStatus;
         }
+
         public void FillWheelsAirPressureToMax(string i_LicenseNumber)
         {
             Vehicle vehicleToAddPressureToWheels = m_CurrentVehiclesInGarage[i_LicenseNumber].Vehicle;
@@ -64,7 +65,5 @@ namespace Ex03.GarageLogic
         {
             return m_CurrentVehiclesInGarage[i_LicenseNumber].Vehicle.GetVehicleDetails();
         }
-    }
-
-    
+    }   
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+
 namespace Ex03.GarageLogic
 {
     public class Truck : Vehicle
@@ -20,6 +21,7 @@ namespace Ex03.GarageLogic
         }
 
         public bool IsTrunkCooled => m_IsTrunkCooled;
+
         public float TrunkCapacity => m_TrunkCapacity;
 
         public override string ToString()

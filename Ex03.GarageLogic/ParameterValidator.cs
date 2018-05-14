@@ -1,10 +1,10 @@
 ﻿using System;
+
 namespace Ex03.GarageLogic
 {
     public class ParameterValidator
     {
         private string m_InputParameter;
-
 
         public ParameterValidator()
         {

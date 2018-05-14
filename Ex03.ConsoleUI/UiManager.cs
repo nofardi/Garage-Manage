@@ -8,8 +8,8 @@ namespace Ex03.ConsoleUI
     public class UiManager
     {
         private bool clearScreen;
-        bool quitGarage = false;
-        GarageManager m_GarageManager = new GarageManager();
+        private bool quitGarage = false;
+        private GarageManager m_GarageManager = new GarageManager();
 
         public void Run()
         {         
@@ -26,7 +26,6 @@ namespace Ex03.ConsoleUI
                     Console.WriteLine(valueOutOfRangeException.Message);
                     Console.WriteLine("Try again:");
                 }
-
             }
         }
 
@@ -96,9 +95,8 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine("license number are inncorrect, back to main menu");
                 getUserInput(ref quitGarage);
             }
-
-
         }
+
         private void changeStatus(string clientlicenseNumber)
         {
             eVehicleRepairStatus newStatus;
@@ -110,7 +108,6 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine("{0}. {1}", i, value);
                 i++;
             }
-
 
             if (Enum.TryParse(Console.ReadLine(), out newStatus))
             {
@@ -189,6 +186,7 @@ namespace Ex03.ConsoleUI
                 }
             }
         }
+
         private void printByStatus(eVehicleRepairStatus i_Status)
         {
             string[] vehiclesToPrint = m_GarageManager.ReturnAllGarageVehicles();
@@ -348,6 +346,5 @@ Your choice: ");
 
             return foundLicense;
         }
-
     }
 }

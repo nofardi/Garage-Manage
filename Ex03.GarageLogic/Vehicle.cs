@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
@@ -23,9 +24,13 @@ namespace Ex03.GarageLogic
         }
 
         public string ModelName => m_ModelName;
+
         public string LicensingNum => m_LicensingNumber;
+
         public float LeftEnergy => m_LeftEnergy;
+
         public Wheel[] Wheels => m_Wheels;
+
         public Engine Engine => m_Engine;
 
         public override string ToString()
@@ -43,18 +48,18 @@ Energy percentage left: {m_LeftEnergy}%";
         {
             List<string> details = new List<string>();
 
-            details.Add("License number: " + LicensingNum.ToString());
-            details.Add("Name of model: " + ModelName.ToString());
-            details.Add("Wheels current air pressure: " + Wheels[0].CurrAirpressure.ToString());
-            details.Add("Name of Wheels manufactur: " + Wheels[0].ManufacturerName);
+            details.Add(string.Format("License number:{0}",LicensingNum.ToString()));
+            details.Add(string.Format("Name of model:{0} ",ModelName.ToString()));
+            details.Add(string.Format("Wheels current air pressure:{0} ",Wheels[0].CurrAirpressure.ToString()));
+            details.Add(string.Format("Name of Wheels manufactur:{0} ",Wheels[0].ManufacturerName));
             if (Engine.GetType() == typeof(GasEngine))
             {
-                details.Add("Fuel Engine - Fuel Type: " + (Engine as GasEngine).GasType.ToString());
-                details.Add("fuel remaining presentage: " + LeftEnergy.ToString());
+                details.Add(string.Format("Fuel Engine - Fuel Type:{0}", (Engine as GasEngine).GasType.ToString()));
+                details.Add(string.Format("fuel remaining presentage:{0} ", LeftEnergy.ToString()));
             }
             else
             {
-                details.Add("Electronic engine -Baterry remaining presentage: " + LeftEnergy.ToString());
+                details.Add(string.Format("Electronic engine -Baterry remaining presentage:{0}", LeftEnergy.ToString()));
             }
 
             return details;

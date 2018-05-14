@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+
 namespace Ex03.GarageLogic
 {
     public class VehicleFactory
@@ -74,7 +75,6 @@ namespace Ex03.GarageLogic
                 out wheelManufactureName,
                 out wheelCurrentAirPressure);
             
-
             Motor motor = new Motor(licenseType, engineVolume, modelName, licenseNumber, energyPercentageLeft, new Wheel[Motor.k_NumOfWheels],
                                     i_Engine, wheelManufactureName, wheelCurrentAirPressure, Motor.k_MaxAirPressue);
                 
@@ -148,7 +148,5 @@ namespace Ex03.GarageLogic
             o_WheelManufactureName = i_VehicleParametersStrings[eVehicleInfoParams.wheelManufactureName];
             o_WheelCurrentAirPressure = Single.Parse(i_VehicleParametersStrings[eVehicleInfoParams.wheelCurrentAirPressure]);
         }
-
-
     }
 }
