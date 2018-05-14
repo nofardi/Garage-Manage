@@ -46,6 +46,19 @@ namespace Ex03.GarageLogic
         {
             return m_CurrentVehiclesInGarage.ContainsKey(i_LicenseNum);
         }
+
+        public void setNewStatus(string i_clientlicenseNumber, eVehicleRepairStatus i_newStatus)
+        {
+            m_CurrentVehiclesInGarage[i_clientlicenseNumber].VehicleRepairStatus = i_newStatus;
+        }
+        public void FillWheelsAirPressureToMax(string i_LicenseNumber)
+        {
+            Vehicle vehicleToAddPressureToWheels = m_CurrentVehiclesInGarage[i_LicenseNumber].Vehicle;
+            foreach (Wheel currentWheel in vehicleToAddPressureToWheels.Wheels)
+            {                               
+               currentWheel.addAirToWheel(currentWheel.MaxAirPressure - currentWheel.CurrAirpressure);            
+            }
+        }
     }
 
     

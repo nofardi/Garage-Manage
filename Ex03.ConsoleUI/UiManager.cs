@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
@@ -7,11 +8,11 @@ namespace Ex03.ConsoleUI
     public class UiManager
     {
         private bool clearScreen;
+        bool quitGarage = false;
         GarageManager m_GarageManager = new GarageManager();
 
         public void Run()
-        {
-            bool quitGarage = false;
+        {         
             printUserMenu();
             while (!quitGarage)
             {
@@ -85,12 +86,62 @@ namespace Ex03.ConsoleUI
 
         private void changeVehicleStatus()
         {
-            throw new NotImplementedException();
+            string clientlicenseNumber = string.Empty;
+            if (findVehicleBylicenseNumber(ref clientlicenseNumber))
+            {
+                changeStatus(clientlicenseNumber);
+            }
+            else
+            {
+                Console.WriteLine("license number are inncorrect, back to main menu");
+                getUserInput(ref quitGarage);
+            }
+
+
+        }
+        private void changeStatus(string clientlicenseNumber)
+        {
+            eVehicleRepairStatus newStatus;
+            Console.WriteLine("please enter the new status:");
+            int i = 1;
+
+            foreach (var value in Enum.GetValues(typeof(eVehicleRepairStatus)))
+            {
+                Console.WriteLine("{0}. {1}", i, value);
+                i++;
+            }
+
+
+            if (Enum.TryParse(Console.ReadLine(), out newStatus))
+            {
+                try
+                {
+                    m_GarageManager.setNewStatus(clientlicenseNumber, newStatus);
+                }
+                catch
+                {
+                    Console.WriteLine("the status you enterd is invalid.");
+                    changeStatus(clientlicenseNumber);
+                }
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         private void inflateVehicleTiresToMax()
         {
-            throw new NotImplementedException();
+            string clientlicenseNumber = string.Empty;
+            if (findVehicleBylicenseNumber(ref clientlicenseNumber))
+            {
+                m_GarageManager.FillWheelsAirPressureToMax(clientlicenseNumber);
+            }
+            else
+            {
+                Console.WriteLine("license number are inncorrect, back to main menu");
+                getUserInput(ref quitGarage);
+            }
         }
 
         private void showCarFullDetails()
@@ -269,6 +320,25 @@ Your choice: ");
                 Console.WriteLine($"{enumIndex}. {name}");
                 enumIndex++;
             }
+        }
+
+        private bool findVehicleBylicenseNumber(ref string clientlicenseNumber)
+        { 
+            bool foundLicense = false;
+            string[] allVehicleInGarageLicenses = m_GarageManager.ReturnAllGarageVehicles();
+
+            Console.WriteLine("Enetr license number of the vehicle you want to change is status:");
+            clientlicenseNumber = Console.ReadLine();
+            foreach (string currentlicenseNumber in allVehicleInGarageLicenses)
+            {
+                if (currentlicenseNumber == clientlicenseNumber)
+                {
+                    foundLicense = true;
+                    break;
+                }
+            }
+
+            return foundLicense;
         }
 
     }
