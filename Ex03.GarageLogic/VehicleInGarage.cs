@@ -42,7 +42,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-                return $@"Owner's name: {m_OwnerName}
+            return $@"Owner's name: {m_OwnerName}
 Owner's phone number: {m_OwnerPhoneNumber}
 Vehicle status: {m_VehicleRepairStatus}
 Vehicle type: {m_Vehicle}
@@ -50,6 +50,5 @@ Vehicle type: {m_Vehicle}
 ";
         }
     }
-
 
 }

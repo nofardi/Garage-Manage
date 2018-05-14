@@ -57,7 +57,7 @@ namespace Ex03.ConsoleUI
                         fillElectricSource();
                         break;
                     case eUserChoice.ShowFullDetails:
-                        showCarFullDetails();
+                        showVehicleFullDetails();
                         clearScreen = false;
                         break;
                     case eUserChoice.Exit:
@@ -144,9 +144,17 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private void showCarFullDetails()
+        private void showVehicleFullDetails()
         {
-            throw new NotImplementedException();
+            string license = string.Empty;
+            if (findVehicleBylicenseNumber(ref license))
+            {
+                List<string> details = m_GarageManager.GetVehicleDetails(license);
+                foreach (string var in details)
+                {
+                    Console.WriteLine(var);
+                }
+            }
         }
 
         private void printGarageVehiclesLicense()

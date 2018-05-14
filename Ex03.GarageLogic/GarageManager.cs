@@ -59,6 +59,11 @@ namespace Ex03.GarageLogic
                currentWheel.addAirToWheel(currentWheel.MaxAirPressure - currentWheel.CurrAirpressure);            
             }
         }
+
+        public List<string> GetVehicleDetails(string i_LicenseNumber)
+        {
+            return m_CurrentVehiclesInGarage[i_LicenseNumber].Vehicle.GetVehicleDetails();
+        }
     }
 
     

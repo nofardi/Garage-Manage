@@ -37,5 +37,27 @@ Tires air pressure: {m_Wheels[0].CurrAirpressure}
 {m_Engine}
 Energy percentage left: {m_LeftEnergy}%";
         }
+
+        // fix to string Format - Erez // Owner problem // overide by car, track and moto
+        public virtual List<string> GetVehicleDetails()
+        {
+            List<string> details = new List<string>();
+
+            details.Add("License number: " + LicensingNum.ToString());
+            details.Add("Name of model: " + ModelName.ToString());
+            details.Add("Wheels current air pressure: " + Wheels[0].CurrAirpressure.ToString());
+            details.Add("Name of Wheels manufactur: " + Wheels[0].ManufacturerName);
+            if (Engine.GetType() == typeof(GasEngine))
+            {
+                details.Add("Fuel Engine - Fuel Type: " + (Engine as GasEngine).GasType.ToString());
+                details.Add("fuel remaining presentage: " + LeftEnergy.ToString());
+            }
+            else
+            {
+                details.Add("Electronic engine -Baterry remaining presentage: " + LeftEnergy.ToString());
+            }
+
+            return details;
+        }
     }
 }
