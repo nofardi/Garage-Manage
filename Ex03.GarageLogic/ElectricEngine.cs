@@ -3,7 +3,7 @@
     public class ElectricEngine : Engine
     {
         public ElectricEngine(float i_MaxBatteryHours, float i_BatteryHoursLeft)
-            :base(i_MaxBatteryHours, i_BatteryHoursLeft)
+            : base(i_MaxBatteryHours, i_BatteryHoursLeft)
         {
         }
 

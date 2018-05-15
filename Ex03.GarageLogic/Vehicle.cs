@@ -4,10 +4,10 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
+        private static Wheel[] m_Wheels;
         private string m_ModelName;
         private string m_LicensingNumber;
-        private float m_LeftEnergy;
-        private static Wheel[] m_Wheels;
+        private float m_LeftEnergy;       
         private Engine m_Engine;
 
         public Vehicle(string i_ModelName, string i_LicensingNumber, float i_LeftEnergy, Wheel[] i_Wheels, Engine i_Engine, string i_ManufacturerName, float i_CurrAirpressure, float i_MaxAirPressure)
@@ -34,7 +34,7 @@ namespace Ex03.GarageLogic
 
         public Engine Engine => m_Engine;
 
-        //TODO: how to return the max air of the specific type when static
+        // TODO: how to return the max air of the specific type when static
         public static float GetMaxAirPressure(VehicleFactory.eVehicleType i_VehicleType)
         {
             float maxAirPressure;
@@ -73,10 +73,10 @@ Energy percentage left: {m_LeftEnergy}%";
         {
             List<string> details = new List<string>();
 
-            details.Add(string.Format("License number:{0}",LicensingNum.ToString()));
-            details.Add(string.Format("Name of model:{0} ",ModelName.ToString()));
-            details.Add(string.Format("Wheels current air pressure:{0} ",Wheels[0].CurrAirpressure.ToString()));
-            details.Add(string.Format("Name of Wheels manufactur:{0} ",Wheels[0].ManufacturerName));
+            details.Add(string.Format("License number:{0}", LicensingNum.ToString()));
+            details.Add(string.Format("Name of model:{0} ", ModelName.ToString()));
+            details.Add(string.Format("Wheels current air pressure:{0} ", Wheels[0].CurrAirpressure.ToString()));
+            details.Add(string.Format("Name of Wheels manufactur:{0} ", Wheels[0].ManufacturerName));
             if (Engine.GetType() == typeof(GasEngine))
             {
                 details.Add(string.Format("Fuel Engine - Fuel Type:{0}", (Engine as GasEngine).GasType.ToString()));

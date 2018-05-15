@@ -20,12 +20,23 @@ namespace Ex03.ConsoleUI
                 {
                   getUserInput(ref quitGarage);
                 }
-
                 catch (ValueOutOfRangeException valueOutOfRangeException)
                 {
                     Console.WriteLine(valueOutOfRangeException.Message);
                     Console.WriteLine("Try again:");
                 }
+            }
+        }
+
+        private static void printEnumList(Enum i_EnumType)
+        {
+            string[] enumNamesArray = Enum.GetNames(i_EnumType.GetType());
+            byte enumIndex = 1;
+
+            foreach (string name in enumNamesArray)
+            {
+                Console.WriteLine($"{enumIndex}. {name}");
+                enumIndex++;
             }
         }
 
@@ -67,7 +78,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                throw new ValueOutOfRangeException(1,8);
+                throw new ValueOutOfRangeException(1, 8);
             }
          
             return userInput;
@@ -163,9 +174,10 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine("{0}. {1}", i, value);
                 i++;
             }
+
             Console.WriteLine("{0} All", i);
             string input = Console.ReadLine();
-            if (Int32.TryParse(input, out i))
+            if (int.TryParse(input, out i))
             {
                 if (i == 4)
                 {
@@ -222,7 +234,7 @@ namespace Ex03.ConsoleUI
 
         private void enterNewVehicle()
         {
-            //TODO: change the try catch here
+            // TODO: change the try catch here
             try
             {
                 string vehicleLicenseNumber = getParameterDetailFromUser("Please enter your vehicle's license", ParameterValidator.eValidityTypes.All);
@@ -299,14 +311,15 @@ Your choice: ");
             VehicleFactory.eVehicleType vehicleType = this.getVehicleTypeFromUser();
             Dictionary<eVehicleInfoParams, string> vehicleParameters = new Dictionary<eVehicleInfoParams, string>
             {
-                {eVehicleInfoParams.vehicleType, vehicleType.ToString()},
-                {eVehicleInfoParams.modelName, getParameterDetailFromUser(@"Please enter the vehicle's model name:", ParameterValidator.eValidityTypes.All)},
-                {eVehicleInfoParams.licenseNumber, i_LicenseNumber},
-                {eVehicleInfoParams.energyPercentageLeft, getParametersAndCheckRange(@"Please insert how much energy \ fuel left (0 to 100%) in the vehicle.", GarageManager.k_MinPrecentageValue, GarageManager.k_MaxPrecentageValue)},
-                {eVehicleInfoParams.wheelManufactureName, getParameterDetailFromUser("Please enter the wheels' manufacture name:", ParameterValidator.eValidityTypes.All)},
-                {eVehicleInfoParams.wheelCurrentAirPressure, getParametersAndCheckRange(@"Please enter the vehicle's current tire's air pressure.", GarageManager.k_MinPrecentageValue, Vehicle.GetMaxAirPressure(vehicleType))}
+                { eVehicleInfoParams.vehicleType, vehicleType.ToString() },
+                { eVehicleInfoParams.modelName, getParameterDetailFromUser(@"Please enter the vehicle's model name:", ParameterValidator.eValidityTypes.All) },
+                { eVehicleInfoParams.licenseNumber, i_LicenseNumber },
+                { eVehicleInfoParams.energyPercentageLeft, getParametersAndCheckRange(@"Please insert how much energy \ fuel left (0 to 100%) in the vehicle.", GarageManager.k_MinPrecentageValue, GarageManager.k_MaxPrecentageValue) },
+                { eVehicleInfoParams.wheelManufactureName, getParameterDetailFromUser("Please enter the wheels' manufacture name:", ParameterValidator.eValidityTypes.All) },
+                { eVehicleInfoParams.wheelCurrentAirPressure, getParametersAndCheckRange(@"Please enter the vehicle's current tire's air pressure.", GarageManager.k_MinPrecentageValue, Vehicle.GetMaxAirPressure(vehicleType)) }
             };
-            Dictionary<eVehicleInfoParams ,ParameterValidator> extraParameterInfo = VehicleFactory.GetSpecificTypeParamsList(vehicleType);
+
+            Dictionary<eVehicleInfoParams, ParameterValidator> extraParameterInfo = VehicleFactory.GetSpecificTypeParamsList(vehicleType);
 
             setExtraVehicleInfo(vehicleParameters, extraParameterInfo);
 
@@ -331,19 +344,7 @@ Your choice: ");
             VehicleFactory.eVehicleType vehicleType = VehicleFactory.GetVehicleTypeFromStr(vehicleTypeString);
             return vehicleType;
         }
-
-        private static void printEnumList(Enum i_EnumType)
-        {
-            string[] enumNamesArray = Enum.GetNames(i_EnumType.GetType());
-            byte enumIndex = 1;
-
-            foreach (string name in enumNamesArray)
-            {
-                Console.WriteLine($"{enumIndex}. {name}");
-                enumIndex++;
-            }
-        }
-
+     
         private bool findVehicleBylicenseNumber(ref string clientlicenseNumber)
         { 
             bool foundLicense = false;

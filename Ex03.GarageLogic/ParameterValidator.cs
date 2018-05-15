@@ -18,6 +18,7 @@ namespace Ex03.GarageLogic
         }
 
         public string InputQuery => m_InputString;
+
         public eValidityTypes eValidityType => m_Validity;
 
         public enum eValidityTypes
@@ -62,8 +63,5 @@ namespace Ex03.GarageLogic
                     throw new ArgumentOutOfRangeException(nameof(i_ValidityType), i_ValidityType, null);
             }
         }
-
-
-
     }
 }

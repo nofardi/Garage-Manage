@@ -5,7 +5,7 @@
         private eGasType m_GasType;
 
         public GasEngine(eGasType i_GasType, float i_CurrGasLiter, float i_MaxGasLiter)
-            :base(i_MaxGasLiter, i_CurrGasLiter)
+            : base(i_MaxGasLiter, i_CurrGasLiter)
         {
             m_GasType = i_GasType;
         }

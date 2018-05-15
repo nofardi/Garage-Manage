@@ -13,9 +13,6 @@
         carColor,
         carDoors,
         trunkCapacity,
-        isTrunkCooled
-    
-
-    
+        isTrunkCooled   
     }
 }

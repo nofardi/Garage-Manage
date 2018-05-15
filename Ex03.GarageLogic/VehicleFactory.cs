@@ -33,7 +33,7 @@ namespace Ex03.GarageLogic
                     vehicle = createCar(createElectricEngine(Car.k_MaxBatteryTime), i_VehicleParameters);
                     break;
                 case eVehicleType.Truck:
-                    vehicle = createTruck(createFuelEngine(Truck.k_GasType, Truck.k_MaxLiterGas),i_VehicleParameters);
+                    vehicle = createTruck(createFuelEngine(Truck.k_GasType, Truck.k_MaxLiterGas), i_VehicleParameters);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -55,7 +55,7 @@ namespace Ex03.GarageLogic
             return vehicleType;
         }
 
-        private static Vehicle createMotor(Engine i_Engine, Dictionary<eVehicleInfoParams ,string> i_VehicleParameters)
+        private static Vehicle createMotor(Engine i_Engine, Dictionary<eVehicleInfoParams, string> i_VehicleParameters)
         {
             string modelName;
             string licenseNumber;
@@ -75,8 +75,7 @@ namespace Ex03.GarageLogic
                 out wheelManufactureName,
                 out wheelCurrentAirPressure);
             
-            Motor motor = new Motor(licenseType, engineVolume, modelName, licenseNumber, energyPercentageLeft, new Wheel[Motor.k_NumOfWheels],
-                                    i_Engine, wheelManufactureName, wheelCurrentAirPressure, Motor.k_MaxAirPressue);
+            Motor motor = new Motor(licenseType, engineVolume, modelName, licenseNumber, energyPercentageLeft, new Wheel[Motor.k_NumOfWheels], i_Engine, wheelManufactureName, wheelCurrentAirPressure, Motor.k_MaxAirPressue);
                 
             return motor;
         }
@@ -100,12 +99,11 @@ namespace Ex03.GarageLogic
                 out wheelManufactureName,
                 out wheelCurrentAirPressure);
 
-            Car car = new Car(carColor, carDoors, modelName, licenseNumber, energyPercentageLeft, new Wheel[Car.k_NumOfWheels],
-                              i_Engine, wheelManufactureName, wheelCurrentAirPressure, Car.k_MaxAirPressue);
+            Car car = new Car(carColor, carDoors, modelName, licenseNumber, energyPercentageLeft, new Wheel[Car.k_NumOfWheels], i_Engine, wheelManufactureName, wheelCurrentAirPressure, Car.k_MaxAirPressue);
             return car;
         }
 
-        private static Vehicle createTruck(Engine i_Engine ,Dictionary<eVehicleInfoParams, string> i_VehicleParameters)
+        private static Vehicle createTruck(Engine i_Engine, Dictionary<eVehicleInfoParams, string> i_VehicleParameters)
         {
             string modelName;
             string licenseNumber;
@@ -113,8 +111,8 @@ namespace Ex03.GarageLogic
             string wheelManufactureName;
             float wheelCurrentAirPressure;
 
-            bool isTrunkCooled = Boolean.Parse(i_VehicleParameters[eVehicleInfoParams.isTrunkCooled]);
-            float trunkCapacity = Single.Parse(i_VehicleParameters[eVehicleInfoParams.trunkCapacity]);
+            bool isTrunkCooled = bool.Parse(i_VehicleParameters[eVehicleInfoParams.isTrunkCooled]);
+            float trunkCapacity = float.Parse(i_VehicleParameters[eVehicleInfoParams.trunkCapacity]);
 
             getVehicleParameters(
                 i_VehicleParameters,
@@ -124,8 +122,7 @@ namespace Ex03.GarageLogic
                 out wheelManufactureName,
                 out wheelCurrentAirPressure);
 
-            Truck truck = new Truck(isTrunkCooled, trunkCapacity, modelName, licenseNumber, energyPercentageLeft, new Wheel[Truck.k_NumOfWheels],
-                                    i_Engine ,wheelManufactureName, wheelCurrentAirPressure, Truck.k_MaxAirPressue);
+            Truck truck = new Truck(isTrunkCooled, trunkCapacity, modelName, licenseNumber, energyPercentageLeft, new Wheel[Truck.k_NumOfWheels], i_Engine, wheelManufactureName, wheelCurrentAirPressure, Truck.k_MaxAirPressue);
             return truck;
         }
 
@@ -139,14 +136,13 @@ namespace Ex03.GarageLogic
             return new ElectricEngine(i_MaxBatteryHours, i_MaxBatteryHours);
         }
 
-        private static void getVehicleParameters(Dictionary<eVehicleInfoParams, string> i_VehicleParametersStrings, out string o_ModelName, out string o_LicenseNumber,
-                                                out float o_EnergyPercentageLeft, out string o_WheelManufactureName, out float o_WheelCurrentAirPressure)
+        private static void getVehicleParameters(Dictionary<eVehicleInfoParams, string> i_VehicleParametersStrings, out string o_ModelName, out string o_LicenseNumber, out float o_EnergyPercentageLeft, out string o_WheelManufactureName, out float o_WheelCurrentAirPressure)
         {
             o_ModelName = i_VehicleParametersStrings[eVehicleInfoParams.modelName];
             o_LicenseNumber = i_VehicleParametersStrings[eVehicleInfoParams.licenseNumber];
-            o_EnergyPercentageLeft = Single.Parse(i_VehicleParametersStrings[eVehicleInfoParams.energyPercentageLeft]);
+            o_EnergyPercentageLeft = float.Parse(i_VehicleParametersStrings[eVehicleInfoParams.energyPercentageLeft]);
             o_WheelManufactureName = i_VehicleParametersStrings[eVehicleInfoParams.wheelManufactureName];
-            o_WheelCurrentAirPressure = Single.Parse(i_VehicleParametersStrings[eVehicleInfoParams.wheelCurrentAirPressure]);
+            o_WheelCurrentAirPressure = float.Parse(i_VehicleParametersStrings[eVehicleInfoParams.wheelCurrentAirPressure]);
         }
 
         public static Dictionary<eVehicleInfoParams, ParameterValidator> GetSpecificTypeParamsList(eVehicleType i_VehicleType)
