@@ -1,4 +1,5 @@
-﻿namespace Ex03.GarageLogic
+﻿using System.Collections.Generic;
+namespace Ex03.GarageLogic
 {
     public class Car : Vehicle
     {
@@ -21,12 +22,22 @@
         public eCarDoors CarDoors => m_AmountOfDoors;
         public eCarColors CarColor => m_CarColor;
 
+
         public override string ToString()
         {
             return $@"Car
 {base.ToString()}
 Car color: {m_CarColor}
 Number of doors: {m_AmountOfDoors}";
+        }
+
+        public static Dictionary<eVehicleInfoParams, ParameterValidator> BuildExtraParameters()
+        {
+            Dictionary<eVehicleInfoParams, ParameterValidator> keyValues = new Dictionary<eVehicleInfoParams, ParameterValidator>();
+            keyValues.Add(eVehicleInfoParams.carColor, new ParameterValidator("Please enter your car color:", ParameterValidator.eValidityTypes.CarColor));
+            keyValues.Add(eVehicleInfoParams.carDoors, new ParameterValidator("Please enter your number of doors", ParameterValidator.eValidityTypes.DoorNumber));
+
+            return keyValues;
         }
     }
 }

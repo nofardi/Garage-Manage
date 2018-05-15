@@ -148,5 +148,27 @@ namespace Ex03.GarageLogic
             o_WheelManufactureName = i_VehicleParametersStrings[eVehicleInfoParams.wheelManufactureName];
             o_WheelCurrentAirPressure = Single.Parse(i_VehicleParametersStrings[eVehicleInfoParams.wheelCurrentAirPressure]);
         }
+
+        public static Dictionary<eVehicleInfoParams, ParameterValidator> GetSpecificTypeParamsList(eVehicleType i_VehicleType)
+        {
+            Dictionary<eVehicleInfoParams, ParameterValidator> extraParameterStrings;
+            switch (i_VehicleType)
+            {
+                case eVehicleType.Motor:
+                case eVehicleType.ElectricMotor:
+                    extraParameterStrings = Motor.BuildExtraParameters();
+                    break;
+                case eVehicleType.Car:
+                case eVehicleType.ElectricCar:
+                    extraParameterStrings = Car.BuildExtraParameters();
+                    break;
+                case eVehicleType.Truck:
+                    extraParameterStrings = Truck.BuildExtraParameters();
+                    break;
+                default: throw new ArgumentOutOfRangeException();
+            }
+
+            return extraParameterStrings;
+        }
     }
 }

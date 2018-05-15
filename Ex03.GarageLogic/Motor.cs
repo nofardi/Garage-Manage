@@ -1,4 +1,5 @@
-﻿namespace Ex03.GarageLogic
+﻿using System.Collections.Generic;
+namespace Ex03.GarageLogic
 {
     public class Motor : Vehicle
     {
@@ -25,6 +26,15 @@
 {base.ToString()}
 License type: {m_LicenseType}
 Engine volume: {m_EngineVolume}";
+        }
+
+        public static Dictionary<eVehicleInfoParams, ParameterValidator> BuildExtraParameters()
+        {
+            Dictionary<eVehicleInfoParams, ParameterValidator> keyValues = new Dictionary<eVehicleInfoParams, ParameterValidator>();
+            keyValues.Add(eVehicleInfoParams.licenseType, new ParameterValidator("Please enter your license type:", ParameterValidator.eValidityTypes.LicenseType));
+            keyValues.Add(eVehicleInfoParams.engineVolume,new ParameterValidator("Please enter your engine volume", ParameterValidator.eValidityTypes.NumberOnly));
+
+            return keyValues;
         }
     }
 }

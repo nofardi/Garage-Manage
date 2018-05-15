@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -30,6 +31,15 @@ namespace Ex03.GarageLogic
 {base.ToString()}
 Maximum trunk capacity: {m_TrunkCapacity}
 Is trunk cooled: {m_IsTrunkCooled}";
+        }
+
+        public static Dictionary<eVehicleInfoParams, ParameterValidator> BuildExtraParameters()
+        {
+            Dictionary<eVehicleInfoParams, ParameterValidator> keyValues = new Dictionary<eVehicleInfoParams, ParameterValidator>();
+            keyValues.Add(eVehicleInfoParams.isTrunkCooled, new ParameterValidator("Please enter if trunk is cooled:", ParameterValidator.eValidityTypes.Boolean));
+            keyValues.Add(eVehicleInfoParams.trunkCapacity, new ParameterValidator("Please enter your trunk capacity", ParameterValidator.eValidityTypes.NumberOnly));
+
+            return keyValues;
         }
     }
 }

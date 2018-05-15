@@ -13,9 +13,9 @@ namespace Ex03.ConsoleUI
 
         public void Run()
         {         
-            printUserMenu();
             while (!quitGarage)
             {
+                printUserMenu();
                 try
                 {
                   getUserInput(ref quitGarage);
@@ -92,7 +92,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                Console.WriteLine("license number are inncorrect, back to main menu");
+                Console.WriteLine("License number is inncorrect, going back to main menu");
                 getUserInput(ref quitGarage);
             }
         }
@@ -100,13 +100,13 @@ namespace Ex03.ConsoleUI
         private void changeStatus(string clientlicenseNumber)
         {
             eVehicleRepairStatus newStatus;
-            Console.WriteLine("please enter the new status:");
-            int i = 1;
+            Console.WriteLine("Please enter the new status:");
+            int menuIndex = 1;
 
             foreach (var value in Enum.GetValues(typeof(eVehicleRepairStatus)))
             {
-                Console.WriteLine("{0}. {1}", i, value);
-                i++;
+                Console.WriteLine("{0}. {1}", menuIndex, value);
+                menuIndex++;
             }
 
             if (Enum.TryParse(Console.ReadLine(), out newStatus))
@@ -117,7 +117,7 @@ namespace Ex03.ConsoleUI
                 }
                 catch
                 {
-                    Console.WriteLine("the status you enterd is invalid.");
+                    Console.WriteLine(@"The status you've enterd is invalid.");
                     changeStatus(clientlicenseNumber);
                 }
             }
@@ -136,7 +136,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                Console.WriteLine("license number are inncorrect, back to main menu");
+                Console.WriteLine("License number is inncorrect, going back to main menu");
                 getUserInput(ref quitGarage);
             }
         }
@@ -157,7 +157,7 @@ namespace Ex03.ConsoleUI
         private void printGarageVehiclesLicense()
         {
             int i = 1;
-            Console.WriteLine("please decide which status of vehicle you want to see:");
+            Console.WriteLine("Please decide which status of vehicle you want to see:");
             foreach (var value in Enum.GetValues(typeof(eVehicleRepairStatus)))
             {
                 Console.WriteLine("{0}. {1}", i, value);
@@ -180,7 +180,7 @@ namespace Ex03.ConsoleUI
                     }
                     else
                     {
-                        Console.WriteLine("invalid decision, please try again");
+                        Console.WriteLine("Invalid decision, please try again");
                         printGarageVehiclesLicense();
                     }
                 }
@@ -225,7 +225,7 @@ namespace Ex03.ConsoleUI
             //TODO: change the try catch here
             try
             {
-                string vehicleLicenseNumber = getParameterDetailFromUser("Please enter yout vehicle's license", ParameterValidator.eValidityTypes.All);
+                string vehicleLicenseNumber = getParameterDetailFromUser("Please enter your vehicle's license", ParameterValidator.eValidityTypes.All);
                 if (!m_GarageManager.IsVehicleInGarage(vehicleLicenseNumber))
                 {
                     this.addClientsVehicleToGarage(vehicleLicenseNumber);
@@ -239,7 +239,7 @@ namespace Ex03.ConsoleUI
             }
             catch
             {
-                Console.WriteLine("Invalid Input Please start over!");
+                Console.WriteLine("Invalid input Please start over!");
             }
         }
 
@@ -273,16 +273,22 @@ Your choice: ");
             return inputDetails;
         }
 
-        //private string getRangeParametersDetails(string i_DetailToAskString, int i_MinValue, int i_MaxValue)
-        //{
-            
-        //}
+        private string getParametersAndCheckRange(string i_DetailToAskString, float i_MinValue, float i_MaxValue)
+        {
+            string inputDetails;
+            Console.WriteLine(i_DetailToAskString);
+
+            inputDetails = Console.ReadLine();
+            StringUtils.CheckInputIsInRange(inputDetails, i_MinValue, i_MaxValue);   
+
+            return inputDetails;
+        }
 
         private void addClientsVehicleToGarage(string i_LicenseNumber)
         {
             Dictionary<eVehicleInfoParams, string> vehicleParams;
-            string ownerName = getParameterDetailFromUser("Owner's name", ParameterValidator.eValidityTypes.LettersOnly);
-            string ownerPhoneNumber = getParameterDetailFromUser("Owner's phone", ParameterValidator.eValidityTypes.NumberOnly);
+            string ownerName = getParameterDetailFromUser("Please enter the owner's name:", ParameterValidator.eValidityTypes.LettersOnly);
+            string ownerPhoneNumber = getParameterDetailFromUser("Please enter the owner's phone number:", ParameterValidator.eValidityTypes.NumberOnly);
 
             vehicleParams = getVehicleInfoFromUser(i_LicenseNumber);
             m_GarageManager.AddVehicle(ownerName, ownerPhoneNumber, vehicleParams);
@@ -294,17 +300,27 @@ Your choice: ");
             Dictionary<eVehicleInfoParams, string> vehicleParameters = new Dictionary<eVehicleInfoParams, string>
             {
                 {eVehicleInfoParams.vehicleType, vehicleType.ToString()},
-                {eVehicleInfoParams.modelName, getParameterDetailFromUser(@"Please insert the vehicle's model name.", ParameterValidator.eValidityTypes.All)},
+                {eVehicleInfoParams.modelName, getParameterDetailFromUser(@"Please enter the vehicle's model name:", ParameterValidator.eValidityTypes.All)},
                 {eVehicleInfoParams.licenseNumber, i_LicenseNumber},
-                //{eVehicleInfoParams.energyPercentageLeft, getRangeParametersDetails(@"Please insert how much energy \ fuel left (0 to 100%) in the vehicle.", k_MinValue, Utilities.k_MaxPercentage)},
-                {eVehicleInfoParams.wheelManufactureName, getParameterDetailFromUser("Please type the wheels' manufacture name.", ParameterValidator.eValidityTypes.All)}
-                //{eVehicleInfoParams.wheelCurrentAirPressure, getRangeParametersDetails("Please enter the vehicle's current tire's air pressure.",k_MinValue, Vehicle.GetMaxAirPressure(vehicleType))}
+                {eVehicleInfoParams.energyPercentageLeft, getParametersAndCheckRange(@"Please insert how much energy \ fuel left (0 to 100%) in the vehicle.", GarageManager.k_MinPrecentageValue, GarageManager.k_MaxPrecentageValue)},
+                {eVehicleInfoParams.wheelManufactureName, getParameterDetailFromUser("Please enter the wheels' manufacture name:", ParameterValidator.eValidityTypes.All)},
+                {eVehicleInfoParams.wheelCurrentAirPressure, getParametersAndCheckRange(@"Please enter the vehicle's current tire's air pressure.", GarageManager.k_MinPrecentageValue, Vehicle.GetMaxAirPressure(vehicleType))}
             };
-           // List<ParameterValidator> extraParameterInfo = VehicleFactory.BuildExtraParametersInfo(vehicleType);
+            Dictionary<eVehicleInfoParams ,ParameterValidator> extraParameterInfo = VehicleFactory.GetSpecificTypeParamsList(vehicleType);
 
-          //  getExtraVehicleParameters(vehicleParameters, extraParameterInfo);
+            setExtraVehicleInfo(vehicleParameters, extraParameterInfo);
 
             return vehicleParameters;
+        }
+
+        private void setExtraVehicleInfo(Dictionary<eVehicleInfoParams, string> vehicleParameters, Dictionary<eVehicleInfoParams, ParameterValidator> i_InfoToAsk)
+        {
+            string inputString;
+            foreach(KeyValuePair<eVehicleInfoParams, ParameterValidator> query in i_InfoToAsk)
+            {
+                inputString = getParameterDetailFromUser(query.Value.InputQuery, query.Value.eValidityType);
+                vehicleParameters.Add(query.Key, inputString);
+            }
         }
 
         private VehicleFactory.eVehicleType getVehicleTypeFromUser()
@@ -333,7 +349,7 @@ Your choice: ");
             bool foundLicense = false;
             string[] allVehicleInGarageLicenses = m_GarageManager.ReturnAllGarageVehicles();
 
-            Console.WriteLine("Enetr license number of the vehicle you want to change is status:");
+            Console.WriteLine("Enter the license number of the vehicle you want to change its status:");
             clientlicenseNumber = Console.ReadLine();
             foreach (string currentlicenseNumber in allVehicleInGarageLicenses)
             {

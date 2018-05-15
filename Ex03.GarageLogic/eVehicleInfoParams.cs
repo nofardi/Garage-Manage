@@ -14,5 +14,8 @@
         carDoors,
         trunkCapacity,
         isTrunkCooled
+    
+
+    
     }
 }

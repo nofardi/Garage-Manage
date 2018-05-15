@@ -9,6 +9,8 @@ namespace Ex03.GarageLogic
     public class GarageManager
     {
         public const string k_InvalidEnumExceptionString = "The input you've entered isn't one of the valid options";
+        public const int k_MinPrecentageValue = 0;
+        public const int k_MaxPrecentageValue = 100;
 
         private Dictionary<string, VehicleInGarage> m_CurrentVehiclesInGarage;
 

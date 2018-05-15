@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
         private string m_ModelName;
         private string m_LicensingNumber;
         private float m_LeftEnergy;
-        private Wheel[] m_Wheels;
+        private static Wheel[] m_Wheels;
         private Engine m_Engine;
 
         public Vehicle(string i_ModelName, string i_LicensingNumber, float i_LeftEnergy, Wheel[] i_Wheels, Engine i_Engine, string i_ManufacturerName, float i_CurrAirpressure, float i_MaxAirPressure)
@@ -16,10 +16,11 @@ namespace Ex03.GarageLogic
             m_LicensingNumber = i_LicensingNumber;
             m_LeftEnergy = i_LeftEnergy;
             m_Engine = i_Engine;
+            m_Wheels = i_Wheels;
 
             for (int currWheel = 0; currWheel < i_Wheels.Length; currWheel++)
             {
-                m_Wheels[currWheel] = new Wheel(i_ManufacturerName, i_CurrAirpressure, i_MaxAirPressure);   
+                m_Wheels[currWheel] = new Wheel(i_ManufacturerName, i_CurrAirpressure, i_MaxAirPressure);
             }
         }
 
@@ -32,6 +33,30 @@ namespace Ex03.GarageLogic
         public Wheel[] Wheels => m_Wheels;
 
         public Engine Engine => m_Engine;
+
+        //TODO: how to return the max air of the specific type when static
+        public static float GetMaxAirPressure(VehicleFactory.eVehicleType i_VehicleType)
+        {
+            float maxAirPressure;
+            switch (i_VehicleType)
+            {
+                case VehicleFactory.eVehicleType.Motor:
+                case VehicleFactory.eVehicleType.ElectricMotor:
+                    maxAirPressure = Motor.k_MaxAirPressue;
+                    break;
+                case VehicleFactory.eVehicleType.Car:
+                case VehicleFactory.eVehicleType.ElectricCar:
+                    maxAirPressure = Car.k_MaxAirPressue;
+                    break;
+                case VehicleFactory.eVehicleType.Truck:
+                    maxAirPressure = Truck.k_MaxAirPressue;
+                    break;
+                default:
+                    throw new System.ArgumentOutOfRangeException(nameof(i_VehicleType), i_VehicleType, null);
+            }
+
+            return maxAirPressure;
+        }
 
         public override string ToString()
         {
