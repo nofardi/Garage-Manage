@@ -333,7 +333,7 @@ namespace Ex03.ConsoleUI
 Please choose one of the following options:
 
 1. Add a new vehicle to the garage.
-2. Show All the licenses numbers.
+2. Show vehicle's licenses numbers.
 3. Change a car status.
 4. Inflate a vehicle's tires to maximum.
 5. Fuel a vehicle.

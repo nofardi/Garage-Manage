@@ -62,8 +62,8 @@ namespace Ex03.GarageLogic
         {
             return $@"Model name: {m_ModelName}
 License number: {m_LicensingNumber}
-Tires manufacture name: {m_Wheels[0].ManufacturerName}
-Tires air pressure: {m_Wheels[0].CurrAirpressure}
+Wheels' manufacture name: {m_Wheels[0].ManufacturerName}
+Wheels' air pressure: {m_Wheels[0].CurrAirpressure}
 {m_Engine.ToString()}
 Energy percentage left: {m_LeftEnergy}%";
         }    
