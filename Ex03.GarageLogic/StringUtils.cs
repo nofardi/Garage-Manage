@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -43,12 +44,18 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static void CheckStringIsInEnum(string i_InputString, Enum i_EnumToCheck)
+        public static string GetEnumListAsString(Enum i_EnumType)
         {
-            if(!Enum.IsDefined(i_EnumToCheck.GetType(), i_InputString))
+            StringBuilder stringBuilder = new StringBuilder();
+            string[] enumNamesArray = Enum.GetNames(i_EnumType.GetType());
+            byte enumIndex = 1;
+
+            foreach (string name in enumNamesArray)
             {
-                throw new FormatException("Parameter isn't legal.");
+                stringBuilder.AppendLine(($"{enumIndex}. {name}"));
+                enumIndex++;
             }
+            return stringBuilder.ToString();
         }
     }
 }

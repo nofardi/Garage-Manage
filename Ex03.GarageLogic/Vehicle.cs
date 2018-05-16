@@ -42,14 +42,14 @@ namespace Ex03.GarageLogic
             {
                 case VehicleFactory.eVehicleType.Motor:
                 case VehicleFactory.eVehicleType.ElectricMotor:
-                    maxAirPressure = Motor.k_MaxAirPressue;
+                    maxAirPressure = Motor.k_MaxAirPressure;
                     break;
                 case VehicleFactory.eVehicleType.Car:
                 case VehicleFactory.eVehicleType.ElectricCar:
-                    maxAirPressure = Car.k_MaxAirPressue;
+                    maxAirPressure = Car.k_MaxAirPressure;
                     break;
                 case VehicleFactory.eVehicleType.Truck:
-                    maxAirPressure = Truck.k_MaxAirPressue;
+                    maxAirPressure = Truck.k_MaxAirPressure;
                     break;
                 default:
                     throw new System.ArgumentOutOfRangeException(nameof(i_VehicleType), i_VehicleType, null);
@@ -64,7 +64,7 @@ namespace Ex03.GarageLogic
 License number: {m_LicensingNumber}
 Tires manufacture name: {m_Wheels[0].ManufacturerName}
 Tires air pressure: {m_Wheels[0].CurrAirpressure}
-{m_Engine}
+{m_Engine.ToString()}
 Energy percentage left: {m_LeftEnergy}%";
         }    
     }

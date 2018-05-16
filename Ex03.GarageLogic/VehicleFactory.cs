@@ -75,7 +75,7 @@ namespace Ex03.GarageLogic
                 out wheelManufactureName,
                 out wheelCurrentAirPressure);
             
-            Motor motor = new Motor(licenseType, engineVolume, modelName, licenseNumber, energyPercentageLeft, new Wheel[Motor.k_NumOfWheels], i_Engine, wheelManufactureName, wheelCurrentAirPressure, Motor.k_MaxAirPressue);
+            Motor motor = new Motor(licenseType, engineVolume, modelName, licenseNumber, energyPercentageLeft, new Wheel[Motor.k_NumOfWheels], i_Engine, wheelManufactureName, wheelCurrentAirPressure, Motor.k_MaxAirPressure);
                 
             return motor;
         }
@@ -99,7 +99,7 @@ namespace Ex03.GarageLogic
                 out wheelManufactureName,
                 out wheelCurrentAirPressure);
 
-            Car car = new Car(carColor, carDoors, modelName, licenseNumber, energyPercentageLeft, new Wheel[Car.k_NumOfWheels], i_Engine, wheelManufactureName, wheelCurrentAirPressure, Car.k_MaxAirPressue);
+            Car car = new Car(carColor, carDoors, modelName, licenseNumber, energyPercentageLeft, new Wheel[Car.k_NumOfWheels], i_Engine, wheelManufactureName, wheelCurrentAirPressure, Car.k_MaxAirPressure);
             return car;
         }
 
@@ -122,7 +122,7 @@ namespace Ex03.GarageLogic
                 out wheelManufactureName,
                 out wheelCurrentAirPressure);
 
-            Truck truck = new Truck(isTrunkCooled, trunkCapacity, modelName, licenseNumber, energyPercentageLeft, new Wheel[Truck.k_NumOfWheels], i_Engine, wheelManufactureName, wheelCurrentAirPressure, Truck.k_MaxAirPressue);
+            Truck truck = new Truck(isTrunkCooled, trunkCapacity, modelName, licenseNumber, energyPercentageLeft, new Wheel[Truck.k_NumOfWheels], i_Engine, wheelManufactureName, wheelCurrentAirPressure, Truck.k_MaxAirPressure);
             return truck;
         }
 

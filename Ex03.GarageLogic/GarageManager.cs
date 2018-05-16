@@ -20,16 +20,16 @@ namespace Ex03.GarageLogic
             set => m_CurrentVehiclesInGarage = value;
         }
 
-        public string[] ReturnAllGarageVehicles()
+        public string[] GetAllGarageLicenses()
         {
-            string[] vehicles = null;
+            string[] licenses = null;
 
             if (CurrentVehiclesInGarage.Count != 0)
             {
-                vehicles = CurrentVehiclesInGarage.Keys.ToArray();
+                licenses = CurrentVehiclesInGarage.Keys.ToArray();
             }
 
-            return vehicles;
+            return licenses;
         }
 
         public GarageManager()
@@ -47,9 +47,15 @@ namespace Ex03.GarageLogic
         public bool IsVehicleInGarage(string i_LicenseNum)
         {
             return m_CurrentVehiclesInGarage.ContainsKey(i_LicenseNum);
+       
         }
 
-        public void setNewStatus(string i_clientlicenseNumber, eVehicleRepairStatus i_newStatus)
+        public VehicleInGarage GetVehicleByLicense(string i_LicenseNum)
+        {
+            return m_CurrentVehiclesInGarage[i_LicenseNum];
+        }
+
+        public void SetNewStatus(string i_clientlicenseNumber, eVehicleRepairStatus i_newStatus)
         {
             m_CurrentVehiclesInGarage[i_clientlicenseNumber].VehicleRepairStatus = i_newStatus;
         }
@@ -63,74 +69,74 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public List<string> GetVehicleDetails(string i_LicenseNumber)
-        {
-            return m_CurrentVehiclesInGarage[i_LicenseNumber].GetVehicleDetails(i_LicenseNumber);
-        }
+        //public List<string> GetVehicleDetails(string i_LicenseNumber)
+        //{
+        //    return m_CurrentVehiclesInGarage[i_LicenseNumber].ToString();
+        //}
 
-        public string[] returnVehiclesByStatus(eVehicleRepairStatus i_Status)
+        public string[] GetLicensesByStatus(eVehicleRepairStatus i_Status)
         {
-            int count = 0;
-            string[] vehiclesToPrint = null;
+            int countVehicleWithStat = 0;
+            int vehicleIndex = 0;
+            string[] licenseToPrint = null;
 
             foreach (KeyValuePair<string, VehicleInGarage> pair in m_CurrentVehiclesInGarage)
             {
                 if (pair.Value.VehicleRepairStatus == i_Status)
                 {
-                    count++;
+                    countVehicleWithStat++;
                 }
             }
 
-            if (count != 0)
+            if (countVehicleWithStat != 0)
             {
-                vehiclesToPrint = new string[count];
-                count = 0;
+                licenseToPrint = new string[countVehicleWithStat];
                 foreach (KeyValuePair<string, VehicleInGarage> pair in m_CurrentVehiclesInGarage)
                 {
                     if (pair.Value.VehicleRepairStatus == i_Status)
                     {
-                        vehiclesToPrint[count] = pair.Key;
-                        count++;
+                        licenseToPrint[vehicleIndex] = pair.Key;
+                        vehicleIndex++;
                     }
                 }
             }
 
-            return vehiclesToPrint;
+            return licenseToPrint;
         }
 
-        public void fillgasVeicle(ref string i_clientlicenseNumber, eGasType i_gasTypeUserInput, float i_amountTofil)
+        public void FillGasVeicle(ref string i_ClientlicenseNumber, eGasType i_gasTypeUserInput, float i_AmountTofil)
         {
-            if (m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine is ElectricEngine)
+            if (m_CurrentVehiclesInGarage[i_ClientlicenseNumber].Vehicle.Engine is ElectricEngine)
             {
-                throw new FormatException();
+                throw new FormatException("Invalid type of Engine to fill - this is not an gas engine");
             }
 
-            GasEngine gasEngine = (GasEngine)m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine;
+            GasEngine gasEngine = (GasEngine)m_CurrentVehiclesInGarage[i_ClientlicenseNumber].Vehicle.Engine;
 
             if (gasEngine.GasType != i_gasTypeUserInput)
             {
-                throw new FormatException();
+                throw new FormatException("Invalid type of gas");
             }
             else
             {
-                m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine.AddEnergyAmount(i_amountTofil);
+                m_CurrentVehiclesInGarage[i_ClientlicenseNumber].Vehicle.Engine.AddEnergyAmount(i_AmountTofil);
             }
         }
 
-        public void fillElectricVeicle(ref string i_clientlicenseNumber, float i_amountTofil)
+        public void FillElectricVeicle(ref string i_ClientLicenseNumber, float i_AmountTofil)
         {
-            if (m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine is GasEngine)
+            if (m_CurrentVehiclesInGarage[i_ClientLicenseNumber].Vehicle.Engine is GasEngine)
             {
-                throw new FormatException();
+                throw new FormatException("Invalid type of Engine to fill - this is not an electric engine");
             }
             else
             {
-                int amountTofilInhouers = (int)i_amountTofil / 60;
-                float amountTofilIMinuets = i_amountTofil % 60;
-                string number = amountTofilInhouers + "." + amountTofilIMinuets;
+                int amountTofilInHours = (int)i_AmountTofil / 60;
+                float amountTofilIMinuets = i_AmountTofil % 60;
+                string number = amountTofilInHours + "." + amountTofilIMinuets;
                 float amountToAdd = float.Parse(number);
 
-                m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine.AddEnergyAmount(amountToAdd);
+                m_CurrentVehiclesInGarage[i_ClientLicenseNumber].Vehicle.Engine.AddEnergyAmount(amountToAdd);
             }
         }
     }   

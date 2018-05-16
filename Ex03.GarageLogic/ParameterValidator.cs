@@ -51,17 +51,27 @@ namespace Ex03.GarageLogic
                     StringUtils.CheckStringRepresentBool(i_InputString);
                     break;
                 case eValidityTypes.CarColor:
-                    StringUtils.CheckStringIsInEnum(i_InputString, carColors);
+                    checkEnumChoiceIsValid(i_InputString, carColors);
                     break;
                 case eValidityTypes.DoorNumber:
-                    StringUtils.CheckStringIsInEnum(i_InputString, carDoors);
+                    checkEnumChoiceIsValid(i_InputString, carDoors);
                     break;
                 case eValidityTypes.LicenseType:
-                    StringUtils.CheckStringIsInEnum(i_InputString, licenseType);
+                    checkEnumChoiceIsValid(i_InputString, licenseType);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(i_ValidityType), i_ValidityType, null);
             }
+        }
+
+        private static void checkEnumChoiceIsValid(string i_InputString, Enum i_EnumToCheck)
+        {
+            int result = 0;
+            if(!(int.TryParse(i_InputString, out result) && Enum.IsDefined(i_EnumToCheck.GetType(), result)))
+            {
+                throw new FormatException("Parameter isn't legal");
+            }
+            
         }
     }
 }

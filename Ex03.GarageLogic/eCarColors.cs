@@ -2,6 +2,9 @@
 {
     public enum eCarColors
     {
-        GREY, BLUE, WHITE, BLACK
+        GREY = 1,
+        BLUE = 2, 
+        WHITE = 3, 
+        BLACK = 4
     }
 }

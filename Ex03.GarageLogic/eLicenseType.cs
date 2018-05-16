@@ -2,6 +2,9 @@
 {
     public enum eLicenseType
     {
-        A, A1, B1, B2
+        A = 1,
+        A1 = 2,
+        B1 = 3,
+        B2 = 4
     }
 }

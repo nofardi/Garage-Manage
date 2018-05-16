@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
     public class Car : Vehicle
     {
         internal const int k_NumOfWheels = 4;
-        internal const float k_MaxAirPressue = 32f;
+        internal const float k_MaxAirPressure = 32f;
         internal const eGasType k_GasType = eGasType.Octan98;
         internal const float k_MaxLiterGas = 45f;
         internal const float k_MaxBatteryTime = 3.2f;
@@ -13,8 +13,8 @@ namespace Ex03.GarageLogic
         private eCarColors m_CarColor;
         private eCarDoors m_AmountOfDoors;
 
-        public Car(eCarColors i_CarsColor, eCarDoors i_AmountOfDoors, string i_ModelName, string i_LicensingNumber, float i_LeftEnergy, Wheel[] i_Wheels, Engine i_Engine, string i_ManufacturerName, float i_CurrAirpressure, float i_MaxAirPressure)
-            : base(i_ModelName, i_LicensingNumber, i_LeftEnergy, i_Wheels, i_Engine, i_ManufacturerName, i_CurrAirpressure, i_MaxAirPressure)
+        public Car(eCarColors i_CarsColor, eCarDoors i_AmountOfDoors, string i_ModelName, string i_LicensingNumber, float i_LeftEnergy, Wheel[] i_Wheels, Engine i_Engine, string i_ManufacturerName, float i_CurrAirPressure, float i_MaxAirPressure)
+            : base(i_ModelName, i_LicensingNumber, i_LeftEnergy, i_Wheels, i_Engine, i_ManufacturerName, i_CurrAirPressure, i_MaxAirPressure)
         {
             m_CarColor = i_CarsColor;
             m_AmountOfDoors = i_AmountOfDoors;
@@ -22,9 +22,13 @@ namespace Ex03.GarageLogic
 
         public static Dictionary<eVehicleInfoParams, ParameterValidator> BuildExtraParameters()
         {
+            eCarColors carColor = eCarColors.BLACK;
+            eCarDoors carDoors = eCarDoors.FIVE;
             Dictionary<eVehicleInfoParams, ParameterValidator> keyValues = new Dictionary<eVehicleInfoParams, ParameterValidator>();
-            keyValues.Add(eVehicleInfoParams.carColor, new ParameterValidator("Please enter your car color:", ParameterValidator.eValidityTypes.CarColor));
-            keyValues.Add(eVehicleInfoParams.carDoors, new ParameterValidator("Please enter your number of doors", ParameterValidator.eValidityTypes.DoorNumber));
+            keyValues.Add(eVehicleInfoParams.carColor, new ParameterValidator($@"Please enter your car color: 
+{StringUtils.GetEnumListAsString(carColor)}", ParameterValidator.eValidityTypes.CarColor));
+            keyValues.Add(eVehicleInfoParams.carDoors, new ParameterValidator($@"Please enter your number of doors:
+{StringUtils.GetEnumListAsString(carDoors)}", ParameterValidator.eValidityTypes.DoorNumber));
 
             return keyValues;
         }

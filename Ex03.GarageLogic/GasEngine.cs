@@ -15,7 +15,7 @@
 		public override string ToString()
 		{
             string engineTypeString = "fuel quantity (in liters)";
-            return $@"Maximum ${engineTypeString}: {r_MaxEnergyAmount}
+            return $@"Maximum {engineTypeString}: {r_MaxEnergyAmount}
 Current {engineTypeString} left: {m_CurrentEnergyAmount:F}";
 		}
 	}
