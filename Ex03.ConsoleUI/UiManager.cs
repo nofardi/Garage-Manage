@@ -58,6 +58,7 @@ namespace Ex03.ConsoleUI
                         break;
                     case eUserChoice.ChangeVehicleStatus:
                         changeVehicleStatus();
+                        Thread.Sleep(1500);
                         break;
                     case eUserChoice.InflateTiresToMax:
                         inflateVehicleTiresToMax();
@@ -101,11 +102,13 @@ namespace Ex03.ConsoleUI
             if (findVehicleBylicenseNumber(ref clientlicenseNumber))
             {
                 changeStatus(clientlicenseNumber);
+                Console.WriteLine("Changed Status successfully");
             }
             else
             {
                 Console.WriteLine("License number is inncorrect, going back to main menu");
-                getUserInput(ref quitGarage);
+                Thread.Sleep(1500);
+                Run();
             }
         }
 

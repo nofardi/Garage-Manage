@@ -7,6 +7,7 @@ namespace Ex03.ConsoleUI
         public static void Main()
         {
             UiManager uiManager = new UiManager();
+            /////////////////////////  test
             Wheel wheels1 = new Wheel("rwewr", 20, 40);
             Wheel wheels2 = new Wheel("rwewr", 20, 40);
             Wheel wheels3 = new Wheel("rwewr", 20, 40);
@@ -29,16 +30,16 @@ namespace Ex03.ConsoleUI
             uiManager.m_GarageManager.CurrentVehiclesInGarage.Add("123", vehicleInGarageCar);
             uiManager.m_GarageManager.CurrentVehiclesInGarage.Add("567", vehicleInGarageCar2);
             uiManager.m_GarageManager.CurrentVehiclesInGarage.Add("789", vehicleInGaragetruck);
-
+            ////////////////////////// test
 
 
 
             uiManager.Run();
-            ////////////////////////// test
+            
 
             
 
-            /////////////////////////  test
+            
         }
     }
 }
