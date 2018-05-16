@@ -20,12 +20,12 @@ namespace Ex03.ConsoleUI
                 printUserMenu();
                 try
                 {
-                  getUserInput(ref quitGarage);
+                    getUserInput(ref quitGarage);
                 }
                 catch (ValueOutOfRangeException valueOutOfRangeException)
                 {
                     Console.WriteLine(valueOutOfRangeException.Message);
-                    Console.WriteLine("Try again:");
+                    Console.Write("Try again!");
                 }
                 catch(Exception ex)
                 {
@@ -309,7 +309,7 @@ namespace Ex03.ConsoleUI
                 string vehicleLicenseNumber = getParameterDetailFromUser("Please enter your vehicle's license", ParameterValidator.eValidityTypes.All);
                 if (!m_GarageManager.IsVehicleInGarage(vehicleLicenseNumber))
                 {
-                    this.addClientsVehicleToGarage(vehicleLicenseNumber);
+                    addClientsVehicleToGarage(vehicleLicenseNumber);
                     Console.WriteLine("Client's vehicle was added successfully!");
                 }
                 else

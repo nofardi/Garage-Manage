@@ -38,8 +38,6 @@ namespace Ex03.GarageLogic
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-           // setCurrentEnergyQuantity(vehicle);
             return vehicle;
         }
 
