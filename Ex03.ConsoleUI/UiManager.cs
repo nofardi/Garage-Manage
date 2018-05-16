@@ -62,6 +62,7 @@ namespace Ex03.ConsoleUI
                         break;
                     case eUserChoice.InflateTiresToMax:
                         inflateVehicleTiresToMax();
+                        Thread.Sleep(1500);
                         break;
                     case eUserChoice.FuelVehicle:
                         fillFuelVehicle();
@@ -148,6 +149,7 @@ namespace Ex03.ConsoleUI
             if (findVehicleBylicenseNumber(ref clientlicenseNumber))
             {
                 m_GarageManager.FillWheelsAirPressureToMax(clientlicenseNumber);
+                Console.WriteLine("Vehicle Tires is set To Maximum!");
             }
             else
             {
