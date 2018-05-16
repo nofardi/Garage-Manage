@@ -11,7 +11,6 @@ namespace Ex03.GarageLogic
         internal const float k_MaxBatteryTime = 1.8f;
 
         private eLicenseType m_LicenseType;
-
         private int m_EngineVolume;
 
         public Motor(eLicenseType i_LicenseType, int i_EngineVolume, string i_ModelName, string i_LicensingNumber, float i_LeftEnergy, Wheel[] i_Wheels, Engine i_Engine, string i_ManufacturerName, float i_CurrAirpressure, float i_MaxAirPressure)
@@ -20,6 +19,10 @@ namespace Ex03.GarageLogic
             m_LicenseType = i_LicenseType;
             m_EngineVolume = i_EngineVolume;
         }
+
+        public eLicenseType LicenseType => m_LicenseType;
+
+        public int EngineVolume => m_EngineVolume;
 
         public static Dictionary<eVehicleInfoParams, ParameterValidator> BuildExtraParameters()
         {

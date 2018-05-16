@@ -65,7 +65,7 @@ namespace Ex03.GarageLogic
 
         public List<string> GetVehicleDetails(string i_LicenseNumber)
         {
-            return m_CurrentVehiclesInGarage[i_LicenseNumber].Vehicle.GetVehicleDetails();
+            return m_CurrentVehiclesInGarage[i_LicenseNumber].GetVehicleDetails(i_LicenseNumber);
         }
 
         public string[] returnVehiclesByStatus(eVehicleRepairStatus i_Status)

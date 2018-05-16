@@ -66,28 +66,6 @@ Tires manufacture name: {m_Wheels[0].ManufacturerName}
 Tires air pressure: {m_Wheels[0].CurrAirpressure}
 {m_Engine}
 Energy percentage left: {m_LeftEnergy}%";
-        }
-
-        // fix to string Format - Erez // Owner problem // overide by car, track and moto
-        public virtual List<string> GetVehicleDetails()
-        {
-            List<string> details = new List<string>();
-
-            details.Add(string.Format("License number:{0}", LicensingNum.ToString()));
-            details.Add(string.Format("Name of model:{0} ", ModelName.ToString()));
-            details.Add(string.Format("Wheels current air pressure:{0} ", Wheels[0].CurrAirpressure.ToString()));
-            details.Add(string.Format("Name of Wheels manufactur:{0} ", Wheels[0].ManufacturerName));
-            if (Engine.GetType() == typeof(GasEngine))
-            {
-                details.Add(string.Format("Fuel Engine - Fuel Type:{0}", (Engine as GasEngine).GasType.ToString()));
-                details.Add(string.Format("fuel remaining presentage:{0} ", LeftEnergy.ToString()));
-            }
-            else
-            {
-                details.Add(string.Format("Electronic engine -Baterry remaining presentage:{0}", LeftEnergy.ToString()));
-            }
-
-            return details;
-        }
+        }    
     }
 }

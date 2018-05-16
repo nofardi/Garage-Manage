@@ -180,8 +180,7 @@ namespace Ex03.ConsoleUI
 
             else
             {
-                Console.WriteLine("License number is inncorrect, going back to main menu");
-                
+                Console.WriteLine("License number is inncorrect, going back to main menu");              
                 Run();
             }
         }
@@ -196,8 +195,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                Console.WriteLine("License number is inncorrect, going back to main menu");
-                
+                Console.WriteLine("License number is inncorrect, going back to main menu");               
                 Run();
             }
         }
@@ -251,6 +249,13 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine(var);
                 }
+
+                Thread.Sleep(2000);
+            }
+            else
+            {
+                Console.WriteLine("License number is inncorrect, going back to main menu");
+                Run();
             }
         }
 
@@ -355,7 +360,6 @@ namespace Ex03.ConsoleUI
             catch
             {
                 Console.WriteLine("Invalid input Please start over!");
-                Thread.Sleep(1500);
                 Run();
             }
         }
@@ -455,7 +459,7 @@ Your choice: ");
             bool foundLicense = false;
             string[] allVehicleInGarageLicenses = m_GarageManager.ReturnAllGarageVehicles();
 
-            Console.WriteLine("Enter the license number of the vehicle you want to change its status:");
+            Console.WriteLine("Enter the license number of the vehicle you want to work with:");
             clientlicenseNumber = Console.ReadLine();
             foreach (string currentlicenseNumber in allVehicleInGarageLicenses)
             {
