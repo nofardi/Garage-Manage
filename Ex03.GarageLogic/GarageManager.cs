@@ -67,5 +67,34 @@ namespace Ex03.GarageLogic
         {
             return m_CurrentVehiclesInGarage[i_LicenseNumber].Vehicle.GetVehicleDetails();
         }
+
+        public string[] returnVehiclesByStatus(eVehicleRepairStatus i_Status)
+        {
+            int count = 0;
+            string[] vehiclesToPrint = null;
+
+            foreach (KeyValuePair<string, VehicleInGarage> pair in m_CurrentVehiclesInGarage)
+            {
+                if (pair.Value.VehicleRepairStatus == i_Status)
+                {
+                    count++;
+                }
+            }
+            if (count != 0)
+            {
+                vehiclesToPrint = new string[count];
+                count = 0;
+                foreach (KeyValuePair<string, VehicleInGarage> pair in m_CurrentVehiclesInGarage)
+                {
+                    if (pair.Value.VehicleRepairStatus == i_Status)
+                    {
+                        vehiclesToPrint[count] = pair.Key;
+                        count++;
+                    }
+                }
+            }
+
+            return vehiclesToPrint;
+        }
     }   
 }

@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
     public class UiManager
-    {
-        private bool clearScreen;
+    {      
         private bool quitGarage = false;
-        private GarageManager m_GarageManager = new GarageManager();
+        public GarageManager m_GarageManager = new GarageManager(); // change to privte in the end of test
 
         public void Run()
         {         
             while (!quitGarage)
             {
+                Console.Clear();
                 printUserMenu();
                 try
                 {
@@ -53,6 +54,7 @@ namespace Ex03.ConsoleUI
                         break;
                     case eUserChoice.ShowLicenseNumbers:
                         printGarageVehiclesLicense();
+                        Thread.Sleep(1500);
                         break;
                     case eUserChoice.ChangeVehicleStatus:
                         changeVehicleStatus();
@@ -67,8 +69,7 @@ namespace Ex03.ConsoleUI
                         fillElectricSource();
                         break;
                     case eUserChoice.ShowFullDetails:
-                        showVehicleFullDetails();
-                        clearScreen = false;
+                        showVehicleFullDetails();                     
                         break;
                     case eUserChoice.Exit:
                         Console.WriteLine("Thank you for visit Nofar&Erez Garage - Good bye!");
@@ -148,7 +149,8 @@ namespace Ex03.ConsoleUI
             else
             {
                 Console.WriteLine("License number is inncorrect, going back to main menu");
-                getUserInput(ref quitGarage);
+                Thread.Sleep(1500);
+                Run();
             }
         }
 
@@ -177,35 +179,47 @@ namespace Ex03.ConsoleUI
 
             Console.WriteLine("{0} All", i);
             string input = Console.ReadLine();
-            if (int.TryParse(input, out i))
+            try
             {
-                if (i == 4)
+                StringUtils.CheckStringConsistsOnlyNumbers(input);
+            }
+            catch(FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Thread.Sleep(1500);
+                Run();
+
+            }
+            int printAllVehicle = 4;          
+            if (int.Parse(input) == printAllVehicle)
+            {
+               printAll();
+            }
+            else
+            {
+                eVehicleRepairStatus status;
+                if (Enum.TryParse(input, out status) && Enum.IsDefined(typeof(eVehicleRepairStatus), status))
                 {
-                    printAll();
+                    printByStatus(status);
                 }
                 else
                 {
-                    eVehicleRepairStatus status;
-                    if (Enum.TryParse(input, out status))
-                    {
-                        printByStatus(status);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid decision, please try again");
-                        printGarageVehiclesLicense();
-                    }
+                    Console.WriteLine("Invalid decision, please try again");
+                    Thread.Sleep(1500);
+                    Run();
                 }
-            }
+            }     
         }
 
         private void printByStatus(eVehicleRepairStatus i_Status)
         {
-            string[] vehiclesToPrint = m_GarageManager.ReturnAllGarageVehicles();
+            string[] vehiclesToPrint = m_GarageManager.returnVehiclesByStatus(i_Status);
 
             if (vehiclesToPrint == null)
             {
                 Console.WriteLine("There are no vehicles of this status in the garage");
+                Thread.Sleep(1500);
+                Run();
             }
             else
             {
@@ -221,7 +235,9 @@ namespace Ex03.ConsoleUI
             string[] vehicleKeys = m_GarageManager.ReturnAllGarageVehicles();
             if (vehicleKeys == null)
             {
-                Console.WriteLine("There are no vehicles in the garage");             
+                Console.WriteLine("There are no vehicles in the garage");
+                Thread.Sleep(1500);
+                Run();
             }
             else
             {
@@ -252,6 +268,8 @@ namespace Ex03.ConsoleUI
             catch
             {
                 Console.WriteLine("Invalid input Please start over!");
+                Thread.Sleep(1500);
+                Run();
             }
         }
 
