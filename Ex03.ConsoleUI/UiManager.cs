@@ -126,7 +126,6 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine("Please enter the Gas Type to fill:");
                 printEnumList(gsTypeUserInput);
 
-
                 if (Enum.TryParse(Console.ReadLine(), out gsTypeUserInput) && Enum.IsDefined(typeof(eGasType), gsTypeUserInput))
                 {
                     Console.WriteLine("Please enter the Amount of gas you want to fill:");
@@ -187,7 +186,7 @@ namespace Ex03.ConsoleUI
 
         private void changeStatus(string i_ClientLicenseNumber)
         {
-            eVehicleRepairStatus newStatus = eVehicleRepairStatus.COMPLETE; //initial value
+            eVehicleRepairStatus newStatus = eVehicleRepairStatus.COMPLETE; // initial value
             Console.WriteLine("Please enter the new status from the menu below:");
 
             printEnumList(newStatus);
@@ -282,7 +281,6 @@ namespace Ex03.ConsoleUI
         {
             string[] vehicleLicenses = m_GarageManager.GetAllGarageLicenses();
             printLicenses(vehicleLicenses, "There are no vehicles in the garage");
-
         }
 
         private void printLicenses(string[] i_Licenses, string i_Message)

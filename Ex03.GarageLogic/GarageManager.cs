@@ -46,8 +46,7 @@ namespace Ex03.GarageLogic
 
         public bool IsVehicleInGarage(string i_LicenseNum)
         {
-            return m_CurrentVehiclesInGarage.ContainsKey(i_LicenseNum);
-       
+            return m_CurrentVehiclesInGarage.ContainsKey(i_LicenseNum);      
         }
 
         public VehicleInGarage GetVehicleByLicense(string i_LicenseNum)

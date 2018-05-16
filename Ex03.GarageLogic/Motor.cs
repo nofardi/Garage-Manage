@@ -28,8 +28,7 @@ namespace Ex03.GarageLogic
         {
             eLicenseType licenseType = eLicenseType.A;
             Dictionary<eVehicleInfoParams, ParameterValidator> keyValues = new Dictionary<eVehicleInfoParams, ParameterValidator>();
-            keyValues.Add(eVehicleInfoParams.licenseType, new ParameterValidator($@"Please enter your license type: 
-{StringUtils.GetEnumListAsString(licenseType)}", ParameterValidator.eValidityTypes.LicenseType));
+            keyValues.Add(eVehicleInfoParams.licenseType, new ParameterValidator($@"Please enter your license type: {StringUtils.GetEnumListAsString(licenseType)}", ParameterValidator.eValidityTypes.LicenseType));
             keyValues.Add(eVehicleInfoParams.engineVolume, new ParameterValidator("Please enter your engine volume", ParameterValidator.eValidityTypes.NumberOnly));
 
             return keyValues;

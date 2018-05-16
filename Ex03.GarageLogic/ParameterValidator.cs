@@ -70,8 +70,7 @@ namespace Ex03.GarageLogic
             if(!(int.TryParse(i_InputString, out result) && Enum.IsDefined(i_EnumToCheck.GetType(), result)))
             {
                 throw new FormatException("Parameter isn't legal");
-            }
-            
+            }         
         }
     }
 }

@@ -52,9 +52,10 @@ namespace Ex03.GarageLogic
 
             foreach (string name in enumNamesArray)
             {
-                stringBuilder.AppendLine(($"{enumIndex}. {name}"));
+                stringBuilder.AppendLine($"{enumIndex}. {name}");
                 enumIndex++;
             }
+
             return stringBuilder.ToString();
         }
     }

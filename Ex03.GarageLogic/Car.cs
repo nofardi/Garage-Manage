@@ -25,10 +25,8 @@ namespace Ex03.GarageLogic
             eCarColors carColor = eCarColors.BLACK;
             eCarDoors carDoors = eCarDoors.FIVE;
             Dictionary<eVehicleInfoParams, ParameterValidator> keyValues = new Dictionary<eVehicleInfoParams, ParameterValidator>();
-            keyValues.Add(eVehicleInfoParams.carColor, new ParameterValidator($@"Please enter your car color: 
-{StringUtils.GetEnumListAsString(carColor)}", ParameterValidator.eValidityTypes.CarColor));
-            keyValues.Add(eVehicleInfoParams.carDoors, new ParameterValidator($@"Please enter your number of doors:
-{StringUtils.GetEnumListAsString(carDoors)}", ParameterValidator.eValidityTypes.DoorNumber));
+            keyValues.Add(eVehicleInfoParams.carColor, new ParameterValidator($@"Please enter your car color: {StringUtils.GetEnumListAsString(carColor)}", ParameterValidator.eValidityTypes.CarColor));
+            keyValues.Add(eVehicleInfoParams.carDoors, new ParameterValidator($@"Please enter your number of doors: {StringUtils.GetEnumListAsString(carDoors)}", ParameterValidator.eValidityTypes.DoorNumber));
 
             return keyValues;
         }

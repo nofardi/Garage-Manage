@@ -51,6 +51,5 @@ Vehicle type: {m_Vehicle}
  
 ";
         }
-
     }
 }

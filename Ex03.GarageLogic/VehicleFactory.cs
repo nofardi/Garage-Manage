@@ -38,6 +38,7 @@ namespace Ex03.GarageLogic
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             return vehicle;
         }
 
