@@ -80,6 +80,7 @@ namespace Ex03.GarageLogic
                     count++;
                 }
             }
+
             if (count != 0)
             {
                 vehiclesToPrint = new string[count];
@@ -110,7 +111,6 @@ namespace Ex03.GarageLogic
             {
                 throw new FormatException();
             }
-
             else
             {
                 m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine.AddEnergyAmount(i_amountTofil);

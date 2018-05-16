@@ -58,7 +58,7 @@ Vehicle type: {m_Vehicle}
 
             details.Add(string.Format("License number:{0} ", Vehicle.LicensingNum.ToString()));
             details.Add(string.Format("Name of model:{0} ", Vehicle.ModelName.ToString()));         
-            details.Add(string.Format("Owners name:{0} ",OwnerName.ToString()));
+            details.Add(string.Format("Owners name:{0} ", OwnerName.ToString()));
             details.Add(string.Format("Owners phone:{0} ", OwnerPhoneNumber.ToString()));
             details.Add(string.Format("Wheels current air pressure:{0}", Vehicle.Wheels[0].CurrAirpressure.ToString()));
             details.Add(string.Format("Name of Wheels manufactur:{0}", Vehicle.Wheels[0].ManufacturerName.ToString()));

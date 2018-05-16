@@ -79,7 +79,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                throw new ValueOutOfRangeException(1,8);              
+                throw new ValueOutOfRangeException(1, 8);              
             }
          
             return userInput;
@@ -101,7 +101,7 @@ namespace Ex03.ConsoleUI
                     m_GarageManager.fillElectricVeicle(ref clientlicenseNumber, amountTofil);
                     Console.WriteLine("battery charge successfully");
                 }
-                catch (FormatException ex)
+                catch (FormatException)
                 {
                     Console.WriteLine("Invalid type of Enggine to fill - this is not electric enggine");                  
                     Run();
@@ -112,7 +112,6 @@ namespace Ex03.ConsoleUI
                     Run();
                 }
             }
-
             else
             {
                 Console.WriteLine("Not a valid Number to fill");                
@@ -147,7 +146,7 @@ namespace Ex03.ConsoleUI
                             m_GarageManager.fillgasVeicle(ref clientlicenseNumber, gsTypeUserInput, amountTofil);
                             Console.WriteLine("fill Gas successfully");
                         }
-                        catch (FormatException ex)
+                        catch (FormatException)
                         {
                             Console.WriteLine("Invalid type of gas to fill");
                             Thread.Sleep(1500);
@@ -160,14 +159,12 @@ namespace Ex03.ConsoleUI
                             Run();
                         }
                     }
-
                     else
                     {
                         Console.WriteLine("Not a valid Number to fill");
                         
                         Run();
                     }
-
                 }
                 else
                 {
@@ -175,9 +172,7 @@ namespace Ex03.ConsoleUI
                     Thread.Sleep(1500);
                     Run();
                 }
-
             }
-
             else
             {
                 Console.WriteLine("License number is inncorrect, going back to main menu");              
@@ -277,12 +272,12 @@ namespace Ex03.ConsoleUI
             }
             catch(FormatException ex)
             {
-                Console.WriteLine(ex.Message);
-                
+                Console.WriteLine(ex.Message);              
                 Run();
-
             }
-            int printAllVehicle = 4;          
+
+            int printAllVehicle = 4;
+
             if (int.Parse(input) == printAllVehicle)
             {
                printAll();
@@ -472,7 +467,5 @@ Your choice: ");
 
             return foundLicense;
         }
-
-
     }
 }
