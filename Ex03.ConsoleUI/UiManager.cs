@@ -15,6 +15,7 @@ namespace Ex03.ConsoleUI
         {         
             while (!quitGarage)
             {
+                Thread.Sleep(2000);
                 Console.Clear();
                 printUserMenu();
                 try
@@ -53,23 +54,19 @@ namespace Ex03.ConsoleUI
                         enterNewVehicle();
                         break;
                     case eUserChoice.ShowLicenseNumbers:
-                        printGarageVehiclesLicense();
-                        Thread.Sleep(1500);
+                        printGarageVehiclesLicense();                       
                         break;
                     case eUserChoice.ChangeVehicleStatus:
-                        changeVehicleStatus();
-                        Thread.Sleep(1500);
+                        changeVehicleStatus();                       
                         break;
                     case eUserChoice.InflateTiresToMax:
-                        inflateVehicleTiresToMax();
-                        Thread.Sleep(1500);
+                        inflateVehicleTiresToMax();                        
                         break;
                     case eUserChoice.FuelVehicle:
-                        fillFuelVehicle();
-                        Thread.Sleep(1500);
+                        fillFuelVehicle();                       
                         break;
                     case eUserChoice.ChargeVehicle:
-                        fillElectricSource();
+                        fillElectricSource();                       
                         break;
                     case eUserChoice.ShowFullDetails:
                         showVehicleFullDetails();                     
@@ -82,7 +79,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                throw new ValueOutOfRangeException(1, 8);
+                throw new ValueOutOfRangeException(1,8);              
             }
          
             return userInput;
@@ -90,7 +87,37 @@ namespace Ex03.ConsoleUI
 
         private void fillElectricSource()
         {
-            throw new NotImplementedException();
+            string clientlicenseNumber = string.Empty;
+            if (findVehicleBylicenseNumber(ref clientlicenseNumber))
+            {
+                Console.WriteLine("Please enter number of minutes to charge:");
+            }
+
+            float amountTofil;
+            if (float.TryParse(Console.ReadLine(), out amountTofil))
+            {
+                try
+                {
+                    m_GarageManager.fillElectricVeicle(ref clientlicenseNumber, amountTofil);
+                    Console.WriteLine("battery charge successfully");
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine("Invalid type of Enggine to fill - this is not electric enggine");                  
+                    Run();
+                }
+                catch (ValueOutOfRangeException ex)
+                {
+                    Console.WriteLine(ex.Message);                    
+                    Run();
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("Not a valid Number to fill");                
+                Run();
+            }
         }
 
         private void fillFuelVehicle()
@@ -129,7 +156,7 @@ namespace Ex03.ConsoleUI
                         catch (ValueOutOfRangeException ex)
                         {
                             Console.WriteLine(ex.Message);
-                            Thread.Sleep(1500);
+                            
                             Run();
                         }
                     }
@@ -137,7 +164,7 @@ namespace Ex03.ConsoleUI
                     else
                     {
                         Console.WriteLine("Not a valid Number to fill");
-                        Thread.Sleep(1500);
+                        
                         Run();
                     }
 
@@ -154,7 +181,7 @@ namespace Ex03.ConsoleUI
             else
             {
                 Console.WriteLine("License number is inncorrect, going back to main menu");
-                Thread.Sleep(1500);
+                
                 Run();
             }
         }
@@ -170,7 +197,7 @@ namespace Ex03.ConsoleUI
             else
             {
                 Console.WriteLine("License number is inncorrect, going back to main menu");
-                Thread.Sleep(1500);
+                
                 Run();
             }
         }
@@ -187,21 +214,14 @@ namespace Ex03.ConsoleUI
                 menuIndex++;
             }
 
-            if (Enum.TryParse(Console.ReadLine(), out newStatus))
-            {
-                try
-                {
-                    m_GarageManager.setNewStatus(clientlicenseNumber, newStatus);
-                }
-                catch
-                {
-                    Console.WriteLine(@"The status you've enterd is invalid.");
-                    changeStatus(clientlicenseNumber);
-                }
+            if (Enum.TryParse(Console.ReadLine(), out newStatus) && Enum.IsDefined(typeof(eVehicleRepairStatus), newStatus))
+            {               
+                 m_GarageManager.setNewStatus(clientlicenseNumber, newStatus);                       
             }
             else
             {
-                throw new ArgumentException();
+                Console.WriteLine("The status you've enterd is invalid.");
+                Run();
             }
         }
 
@@ -216,7 +236,7 @@ namespace Ex03.ConsoleUI
             else
             {
                 Console.WriteLine("License number is inncorrect, going back to main menu");
-                Thread.Sleep(1500);
+                
                 Run();
             }
         }
@@ -253,7 +273,7 @@ namespace Ex03.ConsoleUI
             catch(FormatException ex)
             {
                 Console.WriteLine(ex.Message);
-                Thread.Sleep(1500);
+                
                 Run();
 
             }
@@ -272,7 +292,7 @@ namespace Ex03.ConsoleUI
                 else
                 {
                     Console.WriteLine("Invalid decision, please try again");
-                    Thread.Sleep(1500);
+                    
                     Run();
                 }
             }     
@@ -303,7 +323,7 @@ namespace Ex03.ConsoleUI
             if (vehicleKeys == null)
             {
                 Console.WriteLine("There are no vehicles in the garage");
-                Thread.Sleep(1500);
+                
                 Run();
             }
             else

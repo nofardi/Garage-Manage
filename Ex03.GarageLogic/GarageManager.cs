@@ -116,6 +116,22 @@ namespace Ex03.GarageLogic
                 m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine.AddEnergyAmount(i_amountTofil);
             }
         }
-            
+
+        public void fillElectricVeicle(ref string i_clientlicenseNumber, float i_amountTofil)
+        {
+            if (m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine is GasEngine)
+            {
+                throw new FormatException();
+            }
+            else
+            {
+                int amountTofilInhouers = (int)i_amountTofil / 60;
+                float amountTofilIMinuets = i_amountTofil % 60;
+                string number = amountTofilInhouers + "." + amountTofilIMinuets;
+                float amountToAdd = float.Parse(number);
+
+                m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine.AddEnergyAmount(amountToAdd);
+            }
+        }
     }   
 }
