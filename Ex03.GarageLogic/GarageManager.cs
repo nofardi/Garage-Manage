@@ -96,5 +96,26 @@ namespace Ex03.GarageLogic
 
             return vehiclesToPrint;
         }
+
+        public void fillgasVeicle(ref string i_clientlicenseNumber, eGasType i_gasTypeUserInput, float i_amountTofil)
+        {
+            if (m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine is ElectricEngine)
+            {
+                throw new FormatException();
+            }
+
+            GasEngine gasEngine = (GasEngine)m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine;
+
+            if (gasEngine.GasType != i_gasTypeUserInput)
+            {
+                throw new FormatException();
+            }
+
+            else
+            {
+                m_CurrentVehiclesInGarage[i_clientlicenseNumber].Vehicle.Engine.AddEnergyAmount(i_amountTofil);
+            }
+        }
+            
     }   
 }

@@ -66,6 +66,7 @@ namespace Ex03.ConsoleUI
                         break;
                     case eUserChoice.FuelVehicle:
                         fillFuelVehicle();
+                        Thread.Sleep(1500);
                         break;
                     case eUserChoice.ChargeVehicle:
                         fillElectricSource();
@@ -94,7 +95,68 @@ namespace Ex03.ConsoleUI
 
         private void fillFuelVehicle()
         {
-            throw new NotImplementedException();
+            string clientlicenseNumber = string.Empty;
+            if (findVehicleBylicenseNumber(ref clientlicenseNumber))
+            {          
+                Console.WriteLine("Please enter the Gas Type to fill:");
+                int menuIndex = 1;
+
+                foreach (var value in Enum.GetValues(typeof(eGasType)))
+                {
+                    Console.WriteLine("{0}. {1}", menuIndex, value);
+                    menuIndex++;
+                }
+
+                eGasType gsTypeUserInput;
+
+                if (Enum.TryParse(Console.ReadLine(), out gsTypeUserInput) && Enum.IsDefined(typeof(eGasType), gsTypeUserInput))
+                {
+                    Console.WriteLine("Please enter the Amount of gas we want to fill:");
+                    float amountTofil;
+                    if (float.TryParse(Console.ReadLine(), out amountTofil))
+                    {
+                        try
+                        {
+                            m_GarageManager.fillgasVeicle(ref clientlicenseNumber, gsTypeUserInput, amountTofil);
+                            Console.WriteLine("fill Gas successfully");
+                        }
+                        catch (FormatException ex)
+                        {
+                            Console.WriteLine("Invalid type of gas to fill");
+                            Thread.Sleep(1500);
+                            Run();
+                        }
+                        catch (ValueOutOfRangeException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            Thread.Sleep(1500);
+                            Run();
+                        }
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Not a valid Number to fill");
+                        Thread.Sleep(1500);
+                        Run();
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("incorrect GasType");
+                    Thread.Sleep(1500);
+                    Run();
+                }
+
+            }
+
+            else
+            {
+                Console.WriteLine("License number is inncorrect, going back to main menu");
+                Thread.Sleep(1500);
+                Run();
+            }
         }
 
         private void changeVehicleStatus()
@@ -386,5 +448,7 @@ Your choice: ");
 
             return foundLicense;
         }
+
+
     }
 }
