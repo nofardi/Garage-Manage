@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Ex03.GarageLogic;
 
@@ -99,14 +98,14 @@ namespace Ex03.ConsoleUI
                     m_GarageManager.FillElectricVeicle(ref clientlicenseNumber, amountTofil);
                     Console.WriteLine("Battery charged successfully");
                 }
-                catch (FormatException fe)
+                catch (FormatException formatEx)
                 {
-                    Console.WriteLine(fe.Message);
+                    Console.WriteLine(formatEx.Message);
                     return;
                 }
-                catch (ValueOutOfRangeException ex)
+                catch (ValueOutOfRangeException valueOutOfRangeeEx)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(valueOutOfRangeeEx.Message);
                     return;
                 }
             }

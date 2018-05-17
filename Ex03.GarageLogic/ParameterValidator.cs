@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
         private string m_InputString;
         private eValidityTypes m_Validity;
 
-        public ParameterValidator()
+        public ParameterValidator() // need it? NOFAR
         {
         }
 
