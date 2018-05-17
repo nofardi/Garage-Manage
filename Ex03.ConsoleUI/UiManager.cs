@@ -238,8 +238,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Please decide which status of vehicle you want to see:");
             printEnumList(enumToPrint);
             Console.SetCursorPosition(0, Console.CursorTop -1);
-            Console.Write("{0}. All",4);
-            Console.WriteLine();
+            Console.WriteLine("{0}. All",4);
 
             string input = Console.ReadLine();
             try
