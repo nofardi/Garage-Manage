@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -22,12 +23,17 @@ namespace Ex03.GarageLogic
 
         public static Dictionary<eVehicleInfoParams, ParameterValidator> BuildExtraParameters()
         {
+            StringBuilder strToPrint = new StringBuilder();
             eCarColors carColor = eCarColors.BLACK;
             eCarDoors carDoors = eCarDoors.FIVE;
             Dictionary<eVehicleInfoParams, ParameterValidator> keyValues = new Dictionary<eVehicleInfoParams, ParameterValidator>();
-            keyValues.Add(eVehicleInfoParams.carColor, new ParameterValidator($@"Please enter your car color: 
-{StringUtils.GetEnumListAsString(carColor)}", ParameterValidator.eValidityTypes.CarColor));
-            keyValues.Add(eVehicleInfoParams.carDoors, new ParameterValidator($@"Please enter your number of doors: {StringUtils.GetEnumListAsString(carDoors)}", ParameterValidator.eValidityTypes.DoorNumber));
+            strToPrint.AppendLine("Please enter your car color: ");
+            strToPrint.Append(StringUtils.GetEnumListAsString(carColor));
+            keyValues.Add(eVehicleInfoParams.carColor, new ParameterValidator(strToPrint.ToString(), ParameterValidator.eValidityTypes.CarColor));
+            strToPrint.Clear();
+            strToPrint.AppendLine("Please enter your number of doors: ");
+            strToPrint.Append(StringUtils.GetEnumListAsString(carDoors));
+            keyValues.Add(eVehicleInfoParams.carDoors, new ParameterValidator(strToPrint.ToString(), ParameterValidator.eValidityTypes.DoorNumber));
 
             return keyValues;
         }

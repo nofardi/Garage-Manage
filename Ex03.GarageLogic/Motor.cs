@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -26,10 +27,12 @@ namespace Ex03.GarageLogic
 
         public static Dictionary<eVehicleInfoParams, ParameterValidator> BuildExtraParameters()
         {
+            StringBuilder strToPrint = new StringBuilder();
             eLicenseType licenseType = eLicenseType.A;
             Dictionary<eVehicleInfoParams, ParameterValidator> keyValues = new Dictionary<eVehicleInfoParams, ParameterValidator>();
-            keyValues.Add(eVehicleInfoParams.licenseType, new ParameterValidator($@"Please enter your license type: 
-{StringUtils.GetEnumListAsString(licenseType)}", ParameterValidator.eValidityTypes.LicenseType));
+            strToPrint.AppendLine("Please enter your license type: ");
+            strToPrint.Append(StringUtils.GetEnumListAsString(licenseType));
+            keyValues.Add(eVehicleInfoParams.licenseType, new ParameterValidator(strToPrint.ToString(), ParameterValidator.eValidityTypes.LicenseType));
             keyValues.Add(eVehicleInfoParams.engineVolume, new ParameterValidator("Please enter your engine volume", ParameterValidator.eValidityTypes.NumberOnly));
 
             return keyValues;

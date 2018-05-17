@@ -7,10 +7,6 @@ namespace Ex03.GarageLogic
         private string m_InputString;
         private eValidityTypes m_Validity;
 
-        public ParameterValidator() // need it? NOFAR
-        {
-        }
-
         public ParameterValidator(string i_Query, eValidityTypes i_ValidityType)
         {
             m_InputString = i_Query;
