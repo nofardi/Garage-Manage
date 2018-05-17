@@ -11,6 +11,7 @@ namespace Ex03.GarageLogic
         public const string k_InvalidEnumExceptionString = "The input you've entered isn't one of the valid options";
         public const int k_MinPrecentageValue = 0;
         public const int k_MaxPrecentageValue = 100;
+        public const int k_MinutesInHour = 60;
 
         private Dictionary<string, VehicleInGarage> m_CurrentVehiclesInGarage;
 
@@ -54,9 +55,9 @@ namespace Ex03.GarageLogic
             return m_CurrentVehiclesInGarage[i_LicenseNum];
         }
 
-        public void SetNewStatus(string i_clientlicenseNumber, eVehicleRepairStatus i_newStatus)
+        public void SetNewStatus(string i_ClientLicenseNumber, eVehicleRepairStatus i_NewStatus)
         {
-            m_CurrentVehiclesInGarage[i_clientlicenseNumber].VehicleRepairStatus = i_newStatus;
+            m_CurrentVehiclesInGarage[i_ClientLicenseNumber].VehicleRepairStatus = i_NewStatus;
         }
 
         public void FillWheelsAirPressureToMax(string i_LicenseNumber)
@@ -67,11 +68,6 @@ namespace Ex03.GarageLogic
                currentWheel.addAirToWheel(currentWheel.MaxAirPressure - currentWheel.CurrAirpressure);            
             }
         }
-
-        //public List<string> GetVehicleDetails(string i_LicenseNumber)
-        //{
-        //    return m_CurrentVehiclesInGarage[i_LicenseNumber].ToString();
-        //}
 
         public string[] GetLicensesByStatus(eVehicleRepairStatus i_Status)
         {
@@ -130,8 +126,8 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                int amountTofilInHours = (int)i_AmountTofil / 60;
-                float amountTofilIMinuets = i_AmountTofil % 60;
+                int amountTofilInHours = (int)i_AmountTofil / k_MinutesInHour;
+                float amountTofilIMinuets = i_AmountTofil % k_MinutesInHour;
                 string number = amountTofilInHours + "." + amountTofilIMinuets;
                 float amountToAdd = float.Parse(number);
 

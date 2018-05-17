@@ -32,7 +32,6 @@
 
         public Engine Engine => m_Engine;
 
-        // TODO: how to return the max air of the specific type when static
         public static float GetMaxAirPressure(VehicleFactory.eVehicleType i_VehicleType)
         {
             float maxAirPressure;

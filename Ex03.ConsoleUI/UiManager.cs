@@ -9,12 +9,16 @@ namespace Ex03.ConsoleUI
     {      
         private bool quitGarage = false;
         public GarageManager m_GarageManager = new GarageManager(); // change to privte in the end of test
+        private const int k_MinMenuOption = 1;
+        private const int k_MaxMenuOption = 8;
+        private const int k_SleepAmount = 2000;
+        private const int k_PrintAllOption = 4;
 
         public void Run()
         {         
             while (!quitGarage)
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(k_SleepAmount);
                 Console.Clear();
                 printUserMenu();
                 try
@@ -76,7 +80,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                throw new ValueOutOfRangeException(1, 8);              
+                throw new ValueOutOfRangeException(k_MinMenuOption, k_MaxMenuOption);              
             }
          
             return userInput;
@@ -139,7 +143,6 @@ namespace Ex03.ConsoleUI
                         catch (FormatException fe)
                         {
                             Console.WriteLine(fe.Message);
-                            Thread.Sleep(1500);
                             return;
                         }
                         catch (ValueOutOfRangeException ex)
@@ -157,7 +160,6 @@ namespace Ex03.ConsoleUI
                 else
                 {
                     Console.WriteLine("Incorrect gas type");
-                    Thread.Sleep(1500);
                     return;
                 }
             }
@@ -223,7 +225,6 @@ namespace Ex03.ConsoleUI
             {
                 VehicleInGarage vehicle = m_GarageManager.GetVehicleByLicense(license);
                 Console.WriteLine(vehicle.ToString());
-                Thread.Sleep(2000);
             }
             else
             {
@@ -251,9 +252,7 @@ namespace Ex03.ConsoleUI
                 return;
             }
 
-            int printAllVehicle = 4;
-
-            if (int.Parse(input) == printAllVehicle)
+            if (int.Parse(input) == k_PrintAllOption)
             {
                 printAllVehicles();
             }
@@ -289,7 +288,6 @@ namespace Ex03.ConsoleUI
             if (i_Licenses == null)
             {
                 Console.WriteLine(i_Message);
-                Thread.Sleep(1500);
                 return;
             }
             else
