@@ -2,6 +2,6 @@
 {
     public enum eVehicleRepairStatus
     {
-        IN_PROGRESS = 1, COMPLETE, PAID, ALL
+        IN_PROGRESS = 1, COMPLETE, PAID
     }
 }
